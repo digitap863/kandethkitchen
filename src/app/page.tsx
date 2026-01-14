@@ -1,14 +1,16 @@
-import Image from "next/image";
+import BrandSection from "@/components/home/BrandSection";
+import HeroSection from "@/components/home/HeroSection";
+import KitchenDesign from "@/components/home/KitchenDesign";
+import TopGlow from "@/components/home/TopGlow";
 
 export default function Home() {
   return (
     <>
-      <div className="h-screen w-full flex justify-center items-center">
-        <h1 className="text-[68px] diamond-text text-center leading-none">
-          Premium Kitchen
-          <br /> Accessories &<br /> Appliances
-        </h1>
-      </div>
+      <HeroSection />
+      <TopGlow>
+        <BrandSection />
+        <KitchenDesign />
+      </TopGlow>
     </>
   );
 }

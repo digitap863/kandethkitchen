@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Nunito_Sans } from "next/font/google";
+import { Geist, Geist_Mono, Nunito_Sans, Raleway } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { timesNewRoman } from "@/lib/fonts/timesNewRoman";
@@ -12,6 +12,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const raleway = Raleway({
+  variable: "--font-raleway",
+  subsets: ["latin"],
+  weight: ["100","200","300","400","500","600","700","800","900"],
 });
 
 const nunitoSans = Nunito_Sans({
@@ -31,9 +37,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${nunitoSans.variable} ${timesNewRoman.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${nunitoSans.variable} ${timesNewRoman.variable} ${raleway.variable} antialiased`}
       >
         <Navbar />
         {children}

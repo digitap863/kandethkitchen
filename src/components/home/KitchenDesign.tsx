@@ -1,0 +1,215 @@
+"use client";
+
+import { useState, useRef } from "react";
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+
+interface ProductTag {
+  name: string;
+  color: string;
+}
+
+interface KitchenProduct {
+  id: number;
+  title: string;
+  image: string;
+  tags: ProductTag[];
+}
+
+const products: KitchenProduct[] = [
+  {
+    id: 1,
+    title: "Wardrobe",
+    image: "/home/de1.png",
+    tags: [
+      { name: "EECO", color: "#FF6B6B" },
+      { name: "SLEEK", color: "#4ECDC4" },
+      { name: "OLIVE", color: "#95E1D3" },
+      { name: "EVERSHINE", color: "#F38181" },
+    ],
+  },
+  {
+    id: 2,
+    title: "Hobs",
+    image: "/home/de2.png",
+    tags: [
+      { name: "FABER", color: "#FF6B6B" },
+      { name: "PURE FLAMES", color: "#4ECDC4" },
+    ],
+  },
+  {
+    id: 3,
+    title: "Chimney",
+    image: "/home/de3.png",
+    tags: [
+      { name: "FABER", color: "#FF6B6B" },
+      { name: "SUNSHINE", color: "#FFD93D" },
+      { name: "PURE FLAMES", color: "#4ECDC4" },
+    ],
+  },
+  {
+    id: 4,
+    title: "Kitchen",
+    image: "/home/de4.png",
+    tags: [
+      { name: "EECO", color: "#FF6B6B" },
+      { name: "SLEEK", color: "#4ECDC4" },
+      { name: "HETTICH", color: "#95E1D3" },
+      { name: "METTA", color: "#F38181" },
+    ],
+  },
+  {
+    id: 5,
+    title: "cabin lights",
+    image: "/home/de5.png",
+    tags: [{ name: "EECO", color: "#FF6B6B" }],
+  },
+  {
+    id: 6,
+    title: "cabin lights",
+    image: "/home/de5.png",
+    tags: [{ name: "EECO", color: "#FF6B6B" }],
+  },
+];
+
+export default function KitchenDesign() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const swiperRef = useRef<SwiperType | null>(null);
+
+  const handlePrev = () => {
+    swiperRef.current?.slidePrev();
+  };
+
+  const handleNext = () => {
+    swiperRef.current?.slideNext();
+  };
+
+  return (
+    <section className="relative z-20 overflow-hidden bg-[#0D0D0D] py-20 lg:py-32">
+      <div className="w-full px-5 lg:px-8">
+        {/* Header */}
+        <div className="mb-12 max-w-7xl mx-auto flex flex-col items-end md:mb-16 md:flex-row">
+          <div className="flex-1 flex gap-30 items-end">
+            <div className="flex justify-start mb-25">
+              <h1 className="text-[52px] diamond-text leading-none font-semibold font-raleway text-center">
+                Explore the art of
+                <br />
+                Kitchen
+                <br /> design
+              </h1>
+            </div>
+            <p className="text-[28px]  font-light leading-snug text-white ">
+              A collection <span className="text-[#ACACAC]">that inspires</span> Culinary
+              <br /> excellence with premium <span className="text-[#ACACAC]">quality</span>
+            </p>
+          </div>
+
+          {/* Navigation Arrows */}
+          <div className="flex items-end shrink-0 gap-4">
+            <button
+              onClick={handlePrev}
+              className="flex h-11 w-11 items-center justify-center rounded border border-white/20 bg-transparent text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-[#ff3b3b] hover:bg-[#ff3b3b]/10 active:translate-y-0 md:h-12 md:w-12"
+              aria-label="Previous slide"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+            <button
+              onClick={handleNext}
+              className="flex h-11 w-11 items-center justify-center rounded border border-white/20 bg-transparent text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-[#ff3b3b] hover:bg-[#ff3b3b]/10 active:translate-y-0 md:h-12 md:w-12"
+              aria-label="Next slide"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Carousel */}
+        <div className="relative">
+          <Swiper
+            modules={[Navigation]}
+            spaceBetween={15}
+            slidesPerView={1.2}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 24,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 28,
+              },
+              1280: {
+                slidesPerView: 5,
+                spaceBetween: 32,
+              },
+            }}
+            className="kitchen-swiper"
+          >
+            {products.map((product) => (
+              <SwiperSlide key={product.id}>
+                <div className="h-full cursor-pointer group">
+                  <div className="relative  overflow-hidden rounded-lg bg-black h-100">
+                    <Image
+                      src={product.image}
+                      alt={product.title}
+                      fill
+                      className="object-cover group-hover:scale-50 transition-transform duration-500 hover:scale-105"
+                      sizes="(max-width: 640px) 85vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, (max-width: 1280px) 23vw, 18vw"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-[#080A0C] via-[#080A0C]/70 to-transparent p-6">
+                      <h3 className="mb-3 text-xl capitalize text-white md:text-2xl font-raleway">
+                        {product.title}
+                      </h3>
+                      <div className="flex flex-col gap-1 min-h-25">
+                        {product.tags.map((tag, index) => (
+                          <span
+                            key={index}
+                            className="text-[14px] font-medium uppercase tracking-wider text-[#A7A7A7]"
+                          >
+                            <span className="text-[#CE1919]">•</span> {tag.name}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
+    </section>
+  );
+}
