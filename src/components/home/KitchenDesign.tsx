@@ -10,7 +10,6 @@ import "swiper/css/navigation";
 
 interface ProductTag {
   name: string;
-  color: string;
 }
 
 interface KitchenProduct {
@@ -26,53 +25,46 @@ const products: KitchenProduct[] = [
     title: "Wardrobe",
     image: "/home/de1.png",
     tags: [
-      { name: "EECO", color: "#FF6B6B" },
-      { name: "SLEEK", color: "#4ECDC4" },
-      { name: "OLIVE", color: "#95E1D3" },
-      { name: "EVERSHINE", color: "#F38181" },
+      { name: "EECO" },
+      { name: "SLEEK" },
+      { name: "OLIVE" },
+      { name: "EVERSHINE" },
     ],
   },
   {
     id: 2,
     title: "Hobs",
     image: "/home/de2.png",
-    tags: [
-      { name: "FABER", color: "#FF6B6B" },
-      { name: "PURE FLAMES", color: "#4ECDC4" },
-    ],
+    tags: [{ name: "FABER" }, { name: "PURE FLAMES" }],
   },
   {
     id: 3,
     title: "Chimney",
     image: "/home/de3.png",
-    tags: [
-      { name: "FABER", color: "#FF6B6B" },
-      { name: "SUNSHINE", color: "#FFD93D" },
-      { name: "PURE FLAMES", color: "#4ECDC4" },
-    ],
+    tags: [{ name: "FABER" }, { name: "SUNSHINE" }, { name: "PURE FLAMES" }],
   },
   {
     id: 4,
     title: "Kitchen",
     image: "/home/de4.png",
     tags: [
-      { name: "EECO", color: "#FF6B6B" },
-      { name: "SLEEK", color: "#4ECDC4" },
-      { name: "HETTICH", color: "#95E1D3" },
-      { name: "METTA", color: "#F38181" },
+      { name: "EECO" },
+      { name: "SLEEK" },
+      { name: "HETTICH" },
+      { name: "METTA" },
     ],
   },
   {
     id: 5,
     title: "cabin lights",
     image: "/home/de5.png",
-    tags: [{ name: "EECO", color: "#FF6B6B" }],
+    tags: [{ name: "EECO" }],
   },
   {
     id: 6,
     title: "cabin lights",
     image: "/home/de5.png",
-    tags: [{ name: "EECO", color: "#FF6B6B" }],
+    tags: [{ name: "EECO" }],
   },
 ];
 
@@ -89,7 +81,7 @@ export default function KitchenDesign() {
   };
 
   return (
-    <section className="relative z-20 overflow-hidden bg-[#0D0D0D] py-20 lg:py-32">
+    <section className="relative z-20 overflow-hidden bg-[#0D0D0D] pt-20 lg:pt-32">
       <div className="w-full px-5 lg:px-8">
         {/* Header */}
         <div className="mb-12 max-w-7xl mx-auto flex flex-col items-end md:mb-16 md:flex-row">
@@ -103,8 +95,10 @@ export default function KitchenDesign() {
               </h1>
             </div>
             <p className="text-[28px]  font-light leading-snug text-white ">
-              A collection <span className="text-[#ACACAC]">that inspires</span> Culinary
-              <br /> excellence with premium <span className="text-[#ACACAC]">quality</span>
+              A collection <span className="text-[#ACACAC]">that inspires</span>{" "}
+              Culinary
+              <br /> excellence with premium{" "}
+              <span className="text-[#ACACAC]">quality</span>
             </p>
           </div>
 
@@ -185,7 +179,7 @@ export default function KitchenDesign() {
                       src={product.image}
                       alt={product.title}
                       fill
-                      className="object-cover group-hover:scale-50 transition-transform duration-500 hover:scale-105"
+                      className="object-cover transition-transform duration-500 hover:scale-105"
                       sizes="(max-width: 640px) 85vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, (max-width: 1280px) 23vw, 18vw"
                     />
                     <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-[#080A0C] via-[#080A0C]/70 to-transparent p-6">

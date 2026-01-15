@@ -13,11 +13,12 @@
   --font-sans: var(--font-nunito-sans);
   --font-times: var(--font-times-new-roman);
   --font-raleway: var(--font-raleway);
+   --font-roboto: 'Roboto', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #0D0D0D;
     --foreground: #ededed;
   }
 }
