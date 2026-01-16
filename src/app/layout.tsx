@@ -9,6 +9,7 @@ import {
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { timesNewRoman } from "@/lib/fonts/timesNewRoman";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,6 +56,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
