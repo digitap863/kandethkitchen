@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const ValueSection = () => {
   return (
-    <div className=" w-full min-h-screen relative">
+    <div className=" w-full min-h-screen relative py-20">
       <div className=" w-full flex flex-col justify-center items-center relative z-30">
         <div className="absolute h-full w-full">
           <Image src={"/aboutus/b3.png"} alt="bg" fill className="opacity-30" />
@@ -28,7 +28,7 @@ const ValueSection = () => {
                   <h3 className="mt-4 text-white font-light text-[28px]">
                     Quality First
                   </h3>
-                  <p className="mt-2 text-white text-base font-light max-w-[258px]">
+                  <p className="mt-2 text-white text-base font-light max-w-64.5">
                     We partner only with premium brands known for durability and
                     excellence.
                   </p>
@@ -41,7 +41,7 @@ const ValueSection = () => {
                   <h3 className="mt-4 text-white font-light text-[28px]">
                     Customer Focus
                   </h3>
-                  <p className="mt-2 text-white text-base font-light max-w-[258px]">
+                  <p className="mt-2 text-white text-base font-light max-w-64.5">
                     Your satisfaction drives every decision we make.
                   </p>
                 </div>
@@ -53,7 +53,7 @@ const ValueSection = () => {
                   <h3 className="mt-4 text-white font-light text-[28px]">
                     Passion for Design
                   </h3>
-                  <p className="mt-2 text-white text-base font-light max-w-[258px]">
+                  <p className="mt-2 text-white text-base font-light max-w-64.5">
                     We believe kitchens should be beautiful and functional.
                   </p>
                 </div>
@@ -65,7 +65,7 @@ const ValueSection = () => {
                   <h3 className="mt-4 text-white font-light text-[28px]">
                     Timely Service
                   </h3>
-                  <p className="mt-2 text-white text-base font-light max-w-[258px]">
+                  <p className="mt-2 text-white text-base font-light max-w-64.5">
                     Quick turnaround times without compromising quality.
                   </p>
                 </div>
