@@ -18,7 +18,7 @@ const ExpertSection = () => {
         <h1 className="text-[52px] text-center diamond-text leading-none font-semibold font-raleway">
           Expert Consultation
         </h1>
-        <p className="text-[28px] mt-5 font-light font-roboto text-center max-w-[926px]">
+        <p className="text-[28px] mt-5 font-light font-roboto text-center max-w-231.5">
           Not sure what suits your kitchen or wardrobe? Our experts help you
           choose the{" "}
           <span className="text-[#979797]">
