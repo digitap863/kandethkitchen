@@ -4,6 +4,8 @@ import {
   Geist_Mono,
   Nunito_Sans,
   Raleway,
+  Rammetto_One,
+  Revalia,
   Roboto,
 } from "next/font/google";
 import "./globals.css";
@@ -14,6 +16,12 @@ import Footer from "@/components/Footer";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const revalia = Revalia({
+  variable: "--font-revalia",
+  subsets: ["latin"],
+  weight: "400", // only regular exists
 });
 
 const geistMono = Geist_Mono({
@@ -38,6 +46,11 @@ const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"], // optional
 });
+const rammettoOne = Rammetto_One({
+  variable: "--font-rammetto-one",
+  subsets: ["latin"],
+  weight: "400", // only one weight available
+});
 
 export const metadata: Metadata = {
   title: "Kandeth",
@@ -52,7 +65,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="overflow-x-hidden">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${nunitoSans.variable} ${timesNewRoman.variable} ${raleway.variable} ${roboto.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${nunitoSans.variable} ${timesNewRoman.variable} ${raleway.variable} ${roboto.variable} ${revalia.variable} ${rammettoOne.variable} antialiased`}
       >
         <Navbar />
         {children}

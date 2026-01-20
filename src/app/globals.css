@@ -13,12 +13,14 @@
   --font-sans: var(--font-nunito-sans);
   --font-times: var(--font-times-new-roman);
   --font-raleway: var(--font-raleway);
-   --font-roboto: 'Roboto', sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+  --font-revalia: var(--font-revalia);
+  --font-rammetto-one: var(--font-rammetto-one);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0D0D0D;
+    --background: #0d0d0d;
     --foreground: #ededed;
   }
 }
@@ -30,7 +32,8 @@ body {
 }
 
 .diamond-text {
-  background: linear-gradient(45deg, #ce1919 30%, #ffffff 61%, #ce1919 100%),
+  background:
+    linear-gradient(45deg, #ce1919 30%, #ffffff 61%, #ce1919 100%),
     linear-gradient(135deg, #ffffff 28%, #ce1919 52%, #ce1919 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
