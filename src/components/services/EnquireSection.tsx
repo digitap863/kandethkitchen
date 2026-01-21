@@ -11,11 +11,11 @@ const EnquireSection = () => {
       </div>
       {/* Content */}
       <div className="relative z-30 max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-white text-[36px] font-semibold font-raleway">
+        <h2 className="text-white text-[24px] md:text-[36px] font-semibold font-raleway">
           Ready to Upgrade Your Kitchen or Wardrobe?
         </h2>
 
-        <p className="mt-3 text-white/80 text-[24px] font-roboto font-light">
+        <p className="mt-3 text-white/80 text-[16px] md:text-[24px] font-roboto font-light">
           Visit our showroom or get in touch with our experts today.
         </p>
 

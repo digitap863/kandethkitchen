@@ -55,19 +55,19 @@ const brands: Brand[] = [
 
 const TrustedBrands: React.FC = () => {
   return (
-    <section className="relative w-full bg-white/4  py-24 overflow-hidden">
+    <section className="relative w-full bg-white/4  py-14 md:py-24 overflow-hidden">
       {/* Subtle glow */}
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
         {/* Heading */}
-        <h1 className="text-[52px] text-center diamond-text leading-none font-semibold font-raleway">
+        <h1 className="text-[24px] md:text-[52px] text-center diamond-text leading-none font-semibold font-raleway">
           Our Trusted Brands
         </h1>
-        <p className="text-[28px] mt-5 font-light font-roboto text-center">
+        <p className="text-[16px] md:text-[28px] mt-5 font-light font-roboto text-center">
           We partner with world-renowned brands to bring you the best
         </p>
         {/* Logos */}
-        <div className="mt-12 max-w-4xl mx-auto flex flex-wrap justify-center gap-y-20 gap-x-30 place-items-center">
+        <div className="mt-12 max-w-4xl mx-auto flex flex-wrap justify-center md:gap-y-20 gap-5 md:gap-x-30 place-items-center">
           {brands.map((brand) => (
             <div
               key={brand.id}

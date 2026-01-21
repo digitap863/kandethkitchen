@@ -16,7 +16,7 @@ const Footer = () => {
       {/* Glow background */}
       <div className="z-10 hidden md:flex h-[200vh] w-[150vw]  rounded-t-full absolute -bottom-[150%]  left-[50%] translate-x-[-50%] shadow-[0px_-5px_60px_-1px_rgba(248,2,2,0.4),inset_0px_-5px_100px_-1px_rgba(248,2,2,0.4)]"></div>
 
-      <div className="relative z-30 max-w-6xl mx-auto pb-10  pt-20 flex justify-between gap-16">
+      <div className="relative z-30 max-w-6xl mx-auto pb-10  pt-20 flex flex-col md:flex-row justify-between gap-16 px-5 md:px-0">
         {/* Left Form */}
         <div>
           <div className="text-[#CE1919] flex items-center gap-2 text-base uppercase tracking-widest">

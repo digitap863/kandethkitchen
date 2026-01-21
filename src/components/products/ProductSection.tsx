@@ -80,7 +80,7 @@ const ProductSection: React.FC = () => {
 
   return (
     <section className="relative w-full  pb-24">
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-2">
         {/* Top toggle */}
         <div className="flex justify-center gap-4 mb-8 font-raleway ">
           <div className="bg-[#1F1F1F] p-1.5 flex gap-3 rounded-[20px]">
@@ -104,7 +104,7 @@ const ProductSection: React.FC = () => {
         </div>
 
         {/* Category filters */}
-        <div className="flex gap-10 border-b border-white/30 pb-6 mb-10 font-raleway font-medium justify-center">
+        <div className="flex flex-wrap gap-5 md:gap-10 border-b border-white/30 pb-6 mb-10 font-raleway font-medium justify-center">
           {categories.map((cat) => (
             <div
               key={cat}
@@ -112,7 +112,7 @@ const ProductSection: React.FC = () => {
             >
               <button
                 onClick={() => setActiveCategory(cat)}
-                className={`text-base tracking-wide py-2 px-6 rounded-full ${
+                className={`text-[14px] md:text-base tracking-wide py-2 px-6 rounded-full ${
                   activeCategory === cat
                     ? "text-[#CE1919] pb-2 bg-[#0d0d0d]"
                     : "text-white"
@@ -130,24 +130,24 @@ const ProductSection: React.FC = () => {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2  md:grid-cols-4 gap-2 md:gap-4">
           {filteredProducts.map((product) => (
             <div
               key={product.id}
               className="rounded-2xl relative bg-white/5 backdrop-blur-md border border-white/10 p-1 shadow-[10px]"
             >
               {/* Tags */}
-              <div className="absolute top-5 w-full px-5 z-10 flex justify-between items-center mb-3 font-raleway font-semibold">
-                <span className="px-5 py-1.5 text-xs rounded-full bg-[#3D3C3C] text-white">
+              <div className="absolute top-5 w-full px-2.5 md:px-5 z-10 flex justify-between items-center mb-3 font-raleway font-semibold">
+                <span className="md:px-5 px-2 py-1.5 text-[8px] md:text-xs rounded-full bg-[#3D3C3C] text-white">
                   {product.category}
                 </span>
-                <span className="px-5 py-1.5 text-xs rounded-full bg-[#CE1919] text-white">
+                <span className="md:px-5 px-2 py-1.5 text-[8px] md:text-xs rounded-full bg-[#CE1919] text-white">
                   {product.brand}
                 </span>
               </div>
 
               {/* Image */}
-              <div className="relative w-full h-60">
+              <div className="relative w-full h-40 md:h-60">
                 <Image
                   src={product.image}
                   alt={product.name}
@@ -156,8 +156,8 @@ const ProductSection: React.FC = () => {
                 />
 
                 {product.discount && (
-                  <div className="absolute bottom-6  right-2">
-                    <div className="relative flex justify-center items-center h-20 w-24.5">
+                  <div className="absolute md:bottom-6 bottom-3 right-1 md:right-2">
+                    <div className="relative flex justify-center items-center h-13.5 md:h-20 md:w-24.5 w-16">
                       <Image src={"/products/star.svg"} alt="offer star" fill />
                       <span className="relative z-10 text-[9px] text-black font-rammetto-one">
                         {product.discount}
@@ -170,34 +170,34 @@ const ProductSection: React.FC = () => {
               </div>
 
               {/* Info */}
-              <div className="p-4">
-                <p className="text-yellow-400 flex text-base gap-1 font-roboto font-semibold">
-                  {product.rating} <Star size={19} className="pt-0.5" />
+              <div className="px-1.5 py-2 md:p-4">
+                <p className="text-yellow-400 flex text-[10px] md:text-base gap-1  font-roboto font-semibold">
+                  {product.rating} <Star  className="h-3 w-3 md:h-5 md:w-5 md:pt-0.5" />
                 </p>
 
-                <h3 className="text-white text-base font-raleway font-semibold mt-1">
+                <h3 className="text-white text-[10px] md:text-base font-raleway font-semibold mt-1">
                   {product.name}
                 </h3>
 
-                <p className="mt-2 text-[#979797] font-revalia text-[14px]">
+                <p className="mt-2 text-[#979797] font-revalia text-[8px] md:text-[14px]">
                   product id :123 456 789
                 </p>
-                <p className="mt-2 text-white font-bold font-raleway">
+                <p className="mt-2 text-white font-bold font-raleway text-[10px] md:text-base">
                   ₹ {product.price.toLocaleString()}
                 </p>
-                <p className="mt-2 text-[#979797] font-light font-revalia text-[10px]">
+                <p className="mt-2 text-[#979797] font-light font-revalia text-[8px] md:text-[10px]">
                   MRP (including all Taxes){" "}
                   <span className="line-through">₹12,345</span>
                 </p>
 
-                <p className="text-white text-sm mt-2 font-raleway">
+                <p className="text-white text-[10px] md:text-sm mt-2 font-raleway">
                   Save{" "}
                   <span className="font-bold">
                     ₹{product.save.toLocaleString()}
                   </span>
                 </p>
 
-                <button className="mt-3 text-red-500 gap-2 text-xs hover:underline flex font-raleway font-medium tracking-wide cursor-pointer">
+                <button className="mt-3 text-red-500 gap-2 text-[10px] md:text-xs hover:underline flex font-raleway font-medium tracking-wide cursor-pointer">
                   Enquire now{" "}
                   <span>
                     <ArrowRight size={16} />

@@ -10,8 +10,8 @@ const Navbar = () => {
     { name: "Services", path: "/services" },
   ];
   return (
-    <div className="w-full  z-150 fixed  px-4 md:px-10">
-      <div className="text-white   flex items-center justify-between  max-w-7xl mx-auto py-5">
+    <div className="w-full  z-150 fixed  px-4 md:px-10 hidden md:block">
+      <div className="text-white flex items-center justify-between  max-w-7xl mx-auto py-5">
         <Link href={"/"}>
           <div className="flex ">
             <Image
@@ -42,8 +42,10 @@ const Navbar = () => {
             </NavLink>
           ))}
         </nav>
-        <Link href={'/contactus'}>
-          <div className="py-3 px-6 bg-[#AA1E1E] border border-white uppercase font-sans">Contact Us</div>
+        <Link href={"/contactus"}>
+          <div className="py-3 px-6 bg-[#AA1E1E] border border-white uppercase font-sans">
+            Contact Us
+          </div>
         </Link>
       </div>
     </div>

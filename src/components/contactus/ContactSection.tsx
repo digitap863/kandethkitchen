@@ -5,10 +5,10 @@ const ContactSection = () => {
     <section className="relative w-full pb-24 overflow-hidden font-raleway">
       {/* Background glow */}
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 border-2 rounded-2xl bg-white/2 backdrop-blur-md  border-white/5 px-14 py-16 shadow-2xl ">
+      <div className="relative z-10 max-w-5xl mx-auto md:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:border-2 rounded-2xl md:bg-white/2 backdrop-blur-md  md:border-white/5 md:px-14 px-7 py-16 shadow-2xl ">
           {/* Left Info */}
-          <div>
+          <div className="order-2 md:order-1">
             <h3 className="text-white text-[28px] font-revalia">
               Contact Information
             </h3>
@@ -61,7 +61,7 @@ const ContactSection = () => {
           </div>
 
           {/* Right Form */}
-          <div>
+          <div className="md:order-2 order-1">
             <h3 className="text-white text-[30px] font-revalia">
               Let’s connect
             </h3>

@@ -89,10 +89,10 @@ const WhatWeOfferSection = () => {
   return (
     <div className=" w-full min-h-screen relative">
       <div className=" w-full flex flex-col justify-center items-center relative z-30">
-        <h1 className="text-[52px] text-center diamond-text leading-none font-semibold font-raleway">
+        <h1 className="md:text-[52px] text-[24px] text-center diamond-text leading-none font-semibold font-raleway">
           Why Choose Kandeth?
         </h1>
-        <p className="text-[28px] mt-5 font-light font-roboto text-center">
+        <p className="text-[16px] md:text-[28px] mt-5 font-light font-roboto text-center">
           Experience the difference of working with
           <br /> Kerala&apos;s trusted kitchen experts
         </p>

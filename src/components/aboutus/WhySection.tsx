@@ -47,11 +47,11 @@ const features: Feature[] = [
 const WhySection = () => {
   return (
     <div className=" w-full min-h-screen relative pt-20">
-      <div className=" w-full flex flex-col justify-center items-center relative z-30">
-        <h1 className="text-[52px] text-center diamond-text leading-none font-semibold font-raleway">
+      <div className=" w-full flex flex-col justify-center items-center relative z-30 ">
+        <h1 className="text-[24px] md:text-[52px] text-center diamond-text leading-none font-semibold font-raleway">
           Why Choose Kandeth?
         </h1>
-        <p className="text-[28px] mt-5 font-light font-roboto text-center">
+        <p className="text-[14px] md:text-[28px] mt-5 font-light font-roboto text-center">
           Experience the difference of working with
           <br /> Kerala&apos;s trusted kitchen experts
         </p>
@@ -62,10 +62,10 @@ const WhySection = () => {
             {features.map((feature) => (
               <div
                 key={feature.id}
-                className={`rounded-[20px] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.1)] bg-white/2 backdrop-blur-md py-10 px-6 transition border border-white/4 relative overflow-hidden`}
+                className={`rounded-[20px] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.1)] bg-white/2 backdrop-blur-md py-6 md:py-10 px-6 transition border border-white/4 relative overflow-hidden`}
               >
                 <div className="absolute h-80 w-80 bg-[#ACACAC]/90 blur-[600px] -bottom-[60%] -left-[60%]"></div>
-                <h3 className="text-white text-[20px] font-semibold">
+                <h3 className="text-white text-[16px] md:text-[20px] font-semibold">
                   {feature.title}
                 </h3>
                 <p className="mt-2 text-white/60 text-sm font-light">
