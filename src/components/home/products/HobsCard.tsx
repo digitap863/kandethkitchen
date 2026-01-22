@@ -23,7 +23,7 @@ const HobsCard = () => {
       </div>
 
       <div className="flex justify-center">
-        <div className="relative mt-6 md:w-[206px] md:h-[160px] w-[92px] h-[72px] rounded-[12px] md:rounded-4xl overflow-hidden">
+        <div className="relative mt-6 md:w-51.5 md:h-40 w-23 h-18 rounded-xl md:rounded-4xl overflow-hidden">
           <Image
             src="/home/pr41.png"
             alt="Hob"

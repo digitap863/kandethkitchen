@@ -50,7 +50,7 @@ const Navbar = () => {
 
       {/* Mobile Full-Screen Menu */}
       <div
-        className={`md:hidden fixed top-0 left-0 h-full w-full bg-gradient-to-b from-[#1a1a1a] via-[#2a2a2a] to-[#0a0a0a] transform transition-transform duration-500 ease-in-out z-[200] overflow-y-auto ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+        className={`md:hidden fixed top-0 left-0 h-full w-full bg-linear-to-b from-[#1a1a1a] via-[#2a2a2a] to-[#0a0a0a] transform transition-transform duration-500 ease-in-out z-200 overflow-y-auto ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
       >
         {/* Mobile Menu Header */}
@@ -90,7 +90,7 @@ const Navbar = () => {
             <Link
               href="/contactus"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-between bg-gradient-to-r from-[#AA1E1E] to-[#CE1919] p-5 rounded-2xl shadow-xl active:scale-95 transition-all text-white"
+              className="flex items-center justify-between bg-linear-to-r from-[#AA1E1E] to-[#CE1919] p-5 rounded-2xl shadow-xl active:scale-95 transition-all text-white"
             >
               <span className="font-sans uppercase font-bold tracking-[0.2em]">
                 Contact Us
@@ -130,7 +130,7 @@ const Navbar = () => {
       {/* Overlay */}
       {mobileMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 bg-black/50 z-[150]"
+          className="md:hidden fixed inset-0 bg-black/50 z-150"
           onClick={() => setMobileMenuOpen(false)}
         />
       )}

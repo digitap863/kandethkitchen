@@ -23,7 +23,7 @@ const SinksCard = () => {
       </div>
 
       <div className="flex justify-center ">
-        <div className="relative mt-6 md:w-[206px] md:h-[160px] w-[93px] h-[73px] rounded-[15px] md:rounded-4xl overflow-hidden">
+        <div className="relative mt-6 md:w-51.5 md:h-40 w-23.25 h-18.25 rounded-[15px] md:rounded-4xl overflow-hidden">
           <Image
             src="/home/pr21.png"
             alt="Sink"

@@ -34,7 +34,7 @@ const HingesCard = () => {
           "/home/pr17.svg",
 
         ].map((i,index) => (
-          <div key={index} className="relative md:w-[70px] h-[32px] w-[32px]  md:h-[70px]">
+          <div key={index} className="relative md:w-17.5 h-8 w-8  md:h-17.5">
             <Image
               src={i}
               alt="Hinge"

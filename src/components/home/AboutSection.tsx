@@ -88,7 +88,7 @@ const AboutSection = () => {
                   <h3 className="text-white font-semibold text-[14px] font-roboto">
                     {item.title}
                   </h3>
-                  <p className="text-[#D9D9D9] tracking-wide text-xs mt-1.5 font-roboto max-w-[300px]">
+                  <p className="text-[#D9D9D9] tracking-wide text-xs mt-1.5 font-roboto max-w-75">
                     {item.description}
                   </p>
                 </div>

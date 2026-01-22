@@ -26,7 +26,7 @@ const FoldingTableCard = () => {
       </div>
 
       <div className="mt-6 flex gap-5 md:gap-10 md:pr-10 ">
-        <div className="relative md:w-[185px] w-[83px] h-[73px] md:h-[165px] rounded-[15px] md:rounded-4xl overflow-hidden">
+        <div className="relative md:w-46.25 w-20.75 h-18.25 md:h-41.25 rounded-[15px] md:rounded-4xl overflow-hidden">
           <Image
             src="/home/pr31.png"
             alt="Table 1"
@@ -34,7 +34,7 @@ const FoldingTableCard = () => {
             className="object-cover"
           />
         </div>
-        <div className="relative md:w-[185px] w-[83px] h-[73px] md:h-[165px] rounded-[15px] md:rounded-4xl overflow-hidden translate-y-6">
+        <div className="relative md:w-46.25 w-20.75 h-18.25 md:h-41.25 rounded-[15px] md:rounded-4xl overflow-hidden translate-y-6">
           <Image
             src="/home/pr32.png"
             alt="Table 2"
