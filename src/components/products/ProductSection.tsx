@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight, Box, Boxes, Star } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -86,18 +86,20 @@ const ProductSection: React.FC = () => {
           <div className="bg-[#1F1F1F] p-1.5 flex gap-3 rounded-[20px]">
             <button
               onClick={() => setViewMode("product")}
-              className={`px-4 py-2 rounded-[20px] text-base uppercase cursor-pointer font-medium ${
+              className={`px-4 py-2 flex gap-1.5 rounded-[20px] text-base uppercase cursor-pointer font-medium ${
                 viewMode === "product" ? "bg-red-600 text-white" : ""
               }`}
             >
+              <Box />
               By Product
             </button>
             <button
               onClick={() => setViewMode("brand")}
-              className={`px-4 py-2 rounded-[20px] uppercase text-base cursor-pointer font-medium ${
+              className={`px-4 py-2 flex gap-1.5 rounded-[20px] uppercase text-base cursor-pointer font-medium ${
                 viewMode === "brand" ? "bg-red-600 text-white" : ""
               }`}
             >
+              <Boxes />
               By Brand
             </button>
           </div>
@@ -172,7 +174,8 @@ const ProductSection: React.FC = () => {
               {/* Info */}
               <div className="px-1.5 py-2 md:p-4">
                 <p className="text-yellow-400 flex text-[10px] md:text-base gap-1  font-roboto font-semibold">
-                  {product.rating} <Star  className="h-3 w-3 md:h-5 md:w-5 md:pt-0.5" />
+                  {product.rating}{" "}
+                  <Star className="h-3 w-3 md:h-5 md:w-5 md:pt-0.5" />
                 </p>
 
                 <h3 className="text-white text-[10px] md:text-base font-raleway font-semibold mt-1">

@@ -26,7 +26,7 @@ const MissionVission = () => {
         {/* Vision Card */}
         <div className="mt-10">
           <div className="rounded-4xl bg-linear-to-b from-[#CE1919]/30 to-[#680C0C]/30 p-px ">
-            <div className="rounded-4xl p-6 md:p-10 bg-[#0D0D0D] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.1)] p-10 relative overflow-hidden">
+            <div className="rounded-4xl p-6 md:p-10 bg-[#0D0D0D] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.1)]  relative overflow-hidden">
               <div className="absolute h-80 w-80 bg-[#ACACAC]/90 blur-[600px] -bottom-[60%] -right-[60%]"></div>
               <h3 className="text-[20px] md:text-[28px] text-center diamond-text leading-none font-semibold font-raleway mb-6">
                 Our Vision

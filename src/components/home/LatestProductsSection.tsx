@@ -8,22 +8,22 @@ import SinksCard from "./products/SinksCard";
 const LatestProductsSection = () => {
   return (
     <div className="min-h-screen w-full relative py-20">
-      <div className="w-full flex justify-center mb-20">
-        <div className="flex gap-30 items-end">
-          <div className="flex justify-start mb-25">
-            <h1 className="text-[52px] diamond-text leading-none font-semibold font-raleway text-center">
+      <div className="w-full md:flex justify-center mb-20 px-4">
+        <div className="md:flex gap-30 items-end ">
+          <div className="flex justify-start mb-5 md:mb-25">
+            <h1 className="text-[24px] md:text-[52px] diamond-text leading-none font-semibold font-raleway text-center">
               Explore our latest
               <br />
               Products
             </h1>
           </div>
-          <p className="text-[28px]  font-light leading-snug text-white font-roboto">
+          <p className="text-[16px] md:text-[28px] float-end font-light leading-snug text-white font-roboto">
             Every product category designed with
             <br /> precision and built for modern lifestyles.
           </p>
         </div>
       </div>
-      <div className="relative z-10 max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-20">
+      <div className="relative z-10  max-w-5xl mx-auto px-3 grid grid-cols-2 md:gap-y-10 gap-y-8 gap-x-4 md:gap-x-20">
         <HingesCard />
         <SinksCard />
         <FoldingTableCard />

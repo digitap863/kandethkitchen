@@ -15,8 +15,8 @@ export default function Home() {
       <TopGlow>
         <BrandSection />
         <KitchenDesign />
+        <BottomGlow />
       </TopGlow>
-      <BottomGlow />
       <UpgradeSection />
       <LatestProductsSection />
       <Solutionsection />

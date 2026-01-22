@@ -29,7 +29,7 @@ const features: Feature[] = [
 ];
 const AboutSection = () => {
   return (
-    <section className="absolute bottom-0 w-full bg-[#0D0D0D] py-20 overflow-hidden">
+    <section className="absolute  bottom-0 w-full bg-[#0D0D0D] py-20 overflow-hidden">
       <Image
         src={"/home/mes.png"}
         alt="Kitchen"
@@ -38,14 +38,14 @@ const AboutSection = () => {
       />
       <div className="absolute h-full w-full bg-[#0D0D0D]/90 top-0 left-0 z-10"></div>
       <div className="absolute h-25 w-full bg-[#0D0D0D] blur-[10px] -top-10 left-0 z-10"></div>
-      <div className="relative z-20 max-w-7xl mx-auto py-40 px-6 flex gap-12 items-center justify-between">
+      <div className="relative z-20 max-w-7xl mx-auto pt-10  md:py-40 px-6 flex flex-col md:flex-row gap-12 items-center justify-between">
         {/* Left Content */}
         <div className="flex-1 max-w-158">
-          <h1 className="text-[49px] diamond-text leading-none font-semibold font-raleway text-center max-w-[632px]">
-            About KANDETH Kitchen Accessories &<br /> Appliances
+          <h1 className="text-[24px] md:text-[49px] diamond-text leading-none font-semibold font-raleway text-center max-w-158">
+            About KANDETH<br className="block md:hidden"/> Kitchen Accessories &<br /> Appliances
           </h1>
 
-          <p className="mt-6 text-white font-light text-[20px] text-center">
+          <p className="mt-6 text-white font-light text-[16px] md:text-[20px] text-center md:px-0 px-30">
             At KANDETH Kitchen Accessories & Appliances,
             <span className="text-[#A7A7A7]">
               {" "}
@@ -76,7 +76,7 @@ const AboutSection = () => {
         </div>
 
         {/* Right Cards */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 px-30">
           {features.map((item) => (
             <div
               key={item.id}

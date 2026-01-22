@@ -12,36 +12,36 @@ const products: Product[] = [
     id: 1,
     src: "/home/kitchen/1.svg",
     alt: "Sink",
-    className: "left-[4%] top-[50%] h-[230px] w-[250px]",
+    className: "left-[4%] top-[50%]  md:h-[230px] md:w-[250px] h-[68px] w-[75px]",
   },
   {
     id: 2,
     src: "/home/kitchen/2.svg",
     alt: "Stove",
-    className: "left-[20%] top-[30%] h-[118px] w-[289px]",
+    className: "left-[20%] top-[30%]  md:h-[118px] md:w-[289px] w-[87px] h-[36px]",
   },
   {
     id: 3,
     src: "/home/kitchen/3.svg",
     alt: "Chimney",
-    className: "left-[40%] top-[10%] h-[186px] w-[255px]",
+    className: "md:left-[40%] left-[45%] top-[10%] md:h-[186px] md:w-[255px] w-[77px] h-[56px]",
   },
   {
     id: 4,
     src: "/home/kitchen/4.svg",
     alt: "Shelf",
-    className: "left-[65%] top-[20%] h-[188px] w-[188px]",
+    className: "md:left-[65%] left-[68%] top-[20%]  md:h-[188px] md:w-[188px] h-[57px] w-[57px] ",
   },
   {
     id: 5,
     src: "/home/kitchen/5.svg",
     alt: "Drawer",
-    className: "left-[78%] top-[55%] h-[250px] w-[250px]",
+    className: "left-[78%] top-[55%] md:h-[250px] md:w-[250px] h-[92px] w-[92px] ",
   },
 ];
 const Kitchen = () => {
   return (
-    <section className="relative w-full h-[500px] overflow-hidden">
+    <section className="relative w-full h-57.5 md:h-125 overflow-hidden">
       {/* Products */}
       <div className="relative w-full h-full">
         {products.map((item) => (

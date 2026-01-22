@@ -65,7 +65,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="overflow-x-hidden">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${nunitoSans.variable} ${timesNewRoman.variable} ${raleway.variable} ${roboto.variable} ${revalia.variable} ${rammettoOne.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${nunitoSans.variable} ${timesNewRoman.variable} ${raleway.variable} ${roboto.variable} ${revalia.variable} ${rammettoOne.variable} antialiased overflow-x-hidden`}
       >
         <Navbar />
         {children}

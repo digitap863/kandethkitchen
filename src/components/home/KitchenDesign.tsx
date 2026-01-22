@@ -81,20 +81,20 @@ export default function KitchenDesign() {
   };
 
   return (
-    <section className="relative z-20 overflow-hidden bg-[#0D0D0D] pt-20 lg:pt-32">
+    <section className="relative z-30 overflow-hidden bg-[#0D0D0D] pt-10 md:pt-20 lg:pt-32">
       <div className="w-full px-5 lg:px-8">
         {/* Header */}
-        <div className="mb-12 max-w-7xl mx-auto flex flex-col items-end md:mb-16 md:flex-row">
-          <div className="flex-1 flex gap-30 items-end">
-            <div className="flex justify-start mb-25">
-              <h1 className="text-[52px] diamond-text leading-none font-semibold font-raleway text-center">
+        <div className="mb-12 max-w-7xl mx-auto flex flex-col md:items-end md:mb-16 md:flex-row">
+          <div className="flex-1 md:flex md:gap-30 items-end">
+            <div className="flex justify-start md:mb-25">
+              <h1 className="text-[24px] md:text-[52px] diamond-text leading-none font-semibold font-raleway text-center">
                 Explore the art of
                 <br />
                 Kitchen
-                <br /> design
+                <br className="hidden md:block"/> design
               </h1>
             </div>
-            <p className="text-[28px]  font-light leading-snug text-white ">
+            <p className="text-[16px] float-end md:float-none md:text-[28px]  font-light leading-snug text-white mt-5">
               A collection <span className="text-[#ACACAC]">that inspires</span>{" "}
               Culinary
               <br /> excellence with premium{" "}
@@ -103,7 +103,7 @@ export default function KitchenDesign() {
           </div>
 
           {/* Navigation Arrows */}
-          <div className="flex items-end shrink-0 gap-4">
+          <div className="flex items-end justify-end shrink-0 gap-4 mt-10">
             <button
               onClick={handlePrev}
               className="flex h-11 w-11 items-center justify-center rounded border border-white/20 bg-transparent text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-[#ff3b3b] hover:bg-[#ff3b3b]/10 active:translate-y-0 md:h-12 md:w-12"
