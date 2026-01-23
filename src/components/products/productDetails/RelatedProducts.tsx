@@ -38,7 +38,7 @@ const relatedProducts: RelatedProduct[] = [
     image: "/products/p1.png",
   },
   {
-    id: 3,
+    id: 4,
     name: "Hob Supreme X500",
     brand: "FABER",
     category: "HOB",

@@ -67,9 +67,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${nunitoSans.variable} ${timesNewRoman.variable} ${raleway.variable} ${roboto.variable} ${revalia.variable} ${rammettoOne.variable} antialiased overflow-x-hidden`}
       >
-        <Navbar />
         {children}
-        <Footer />
       </body>
     </html>
   );
