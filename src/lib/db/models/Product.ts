@@ -5,11 +5,12 @@ export interface IProduct extends Document {
   brand: mongoose.Types.ObjectId;
   img: string[];
   title: string;
+  slug: string;
   desc: string;
   keyFeatures: string[];
   specifications: string[];
-  mrp: number;
-  offer: number;
+  mrp: string;
+  offer: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -39,6 +40,10 @@ const ProductSchema = new Schema<IProduct>(
       type: String,
       required: true,
     },
+    slug: {
+      type: String,
+      required: true,
+    },
 
     desc: {
       type: String,
@@ -60,12 +65,12 @@ const ProductSchema = new Schema<IProduct>(
     ],
 
     mrp: {
-      type: Number,
+      type: String,
       required: true,
     },
 
     offer: {
-      type: Number,
+      type: String,
       required: true,
       min: 0,
       max: 100,
@@ -78,7 +83,7 @@ const ProductSchema = new Schema<IProduct>(
 
 // Validation to ensure img array has exactly 5 images
 ProductSchema.path("img").validate(function (value: string[]) {
-  return value.length === 5;
-}, "Product must have exactly 5 images");
+  return value.length <= 5;
+}, "Product must have at most 5 images");
 
 export default models.Product || model<IProduct>("Product", ProductSchema);
