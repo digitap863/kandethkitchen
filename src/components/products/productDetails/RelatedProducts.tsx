@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -89,9 +89,7 @@ const RelatedProducts: React.FC = () => {
 
                 {/* Info */}
                 <div className="p-4 space-y-3">
-                  <p className="text-yellow-400 font-roboto gap-1 text-sm flex">
-                    {product.rating} <Star size={16} className="mt-0.5" />
-                  </p>
+
 
                   <h3 className="mt-1 text-white text-sm leading-snug">
                     {product.name}

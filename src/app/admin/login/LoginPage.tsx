@@ -23,8 +23,8 @@ const LoginPage = () => {
         const result = await adminLogin(email, password);
 
         if (result.success) {
-            // Redirect to admin dashboard on success
-            router.push("/admin/dashboard");
+            // Force a full page reload to ensure middleware catches the new session
+            window.location.href = "/admin/dashboard";
         }
         // Error handling is done by the store
     };

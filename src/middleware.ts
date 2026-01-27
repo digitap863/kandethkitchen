@@ -7,40 +7,53 @@ export function middleware(request: NextRequest) {
   // Get the token from cookies
   const token = request.cookies.get("accessToken")?.value;
 
-  // Define admin paths
+  // Normalize pathname (handle trailing slashes)
+  const normalizedPathname = pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+
+  // Define paths
   const isAdminPath = pathname.startsWith("/admin");
-  const isLoginPage = pathname === "/admin/login";
+  const isAdminApi = pathname.startsWith("/api/admin");
+  const isLoginPage = normalizedPathname === "/admin/login";
+  const isAuthApi = pathname.startsWith("/api/admin/auth");
 
-  if (isAdminPath) {
-    // Handle the root /admin path
-    if (pathname === "/admin") {
-      if (token) {
-        return NextResponse.redirect(new URL("/admin/dashboard", request.url));
-      }
-      return NextResponse.redirect(new URL("/admin/login", request.url));
-    }
+  // 1. Handle Admin APIs
+  if (isAdminApi) {
+    if (isAuthApi) return NextResponse.next();
 
-    // If the user is on the login page
-    if (isLoginPage) {
-      // If already authenticated, redirect to dashboard
-      if (token) {
-        return NextResponse.redirect(new URL("/admin/dashboard", request.url));
-      }
-      // If not authenticated, allow access to login page
-      return NextResponse.next();
-    }
-
-    // For all other admin sub-paths, check for authentication
     if (!token) {
-      // Not authenticated, redirect to login
-      return NextResponse.redirect(new URL("/admin/login", request.url));
+      return NextResponse.json(
+        { success: false, message: "Authentication required" },
+        { status: 401 }
+      );
+    }
+    return NextResponse.next();
+  }
+
+  // 2. Handle Admin Pages
+  if (isAdminPath) {
+    if (token) {
+      // Prevent authenticated users from seeing login page
+      if (isLoginPage || normalizedPathname === "/admin") {
+        const response = NextResponse.redirect(new URL("/admin/dashboard", request.url));
+        response.headers.set('Cache-Control', 'no-store, max-age=0');
+        return response;
+      }
+      return NextResponse.next();
+    } else {
+      // Force unauthenticated users to login page
+      if (!isLoginPage) {
+        const response = NextResponse.redirect(new URL("/admin/login", request.url));
+        response.headers.set('Cache-Control', 'no-store, max-age=0');
+        return response;
+      }
+      return NextResponse.next();
     }
   }
 
   return NextResponse.next();
 }
 
-// Config to match only /admin and its sub-paths
+// Config to match admin routes and their APIs
 export const config = {
-  matcher: ["/admin", "/admin/:path*"],
+  matcher: ["/admin", "/admin/:path*", "/api/admin/:path*"],
 };

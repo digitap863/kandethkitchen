@@ -1,36 +1,30 @@
 import { Box, LayoutDashboard, TrendingUp, Users } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const DashboardPage = () => {
     const stats = [
         {
             label: "Total Products",
-            value: "124",
+            value: "0",
             icon: <Box size={24} />,
             trend: "All Products",
             color: "from-[#AA1E1E] to-[#CE1919]"
         },
         {
             label: "Product Categories",
-            value: "8",
+            value: "0",
             icon: <LayoutDashboard size={24} />,
             trend: "All Categories",
             color: "from-[#2a2a2a] to-[#1a1a1a]"
         },
         {
             label: "Products Brands",
-            value: "12",
+            value: "0",
             icon: <Users size={24} />,
             trend: "All Brands",
             color: "from-[#2a2a2a] to-[#1a1a1a]"
         },
-        {
-            label: "Site Traffic",
-            value: "2,405",
-            icon: <TrendingUp size={24} />,
-            trend: "+5.4% increase",
-            color: "from-[#2a2a2a] to-[#1a1a1a]"
-        }
     ];
 
     return (
@@ -60,7 +54,7 @@ const DashboardPage = () => {
             </div>
 
             {/* Stats Grid */}
-            <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10`}>
+            <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10`}>
                 {stats.map((stat, index) => (
                     <div
                         key={index}
@@ -94,10 +88,12 @@ const DashboardPage = () => {
                 <div className="bg-[#1a1a1a] border border-white/10 rounded-xl p-6">
                     <h3 className="text-lg font-bold uppercase tracking-wider text-[#D9D9D9] mb-6">Quick Actions</h3>
                     <div className="space-y-4">
-                        <button className="w-full flex items-center justify-between p-4 rounded-lg bg-white/5 border border-white/5 hover:bg-[#CE1919]/10 hover:border-[#CE1919]/30 transition-all cursor-pointer group">
-                            <span className="text-sm font-medium uppercase tracking-wide">Add New Product</span>
-                            <Box size={18} className="text-[#CE1919] group-hover:scale-110 transition-transform" />
-                        </button>
+                        <Link href={"/admin/products/add"}>
+                            <button className="w-full flex items-center justify-between p-4 rounded-lg bg-white/5 border border-white/5 hover:bg-[#CE1919]/10 hover:border-[#CE1919]/30 transition-all cursor-pointer group">
+                                <span className="text-sm font-medium uppercase tracking-wide">Add New Product</span>
+                                <Box size={18} className="text-[#CE1919] group-hover:scale-110 transition-transform" />
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>

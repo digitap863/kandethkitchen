@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Box, Boxes, Star } from "lucide-react";
+import { ArrowRight, Box, Boxes } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -10,7 +10,6 @@ type Product = {
   category: string;
   brand: string;
   image: string;
-  rating: number;
   price: number;
   save: number;
   discount?: string;
@@ -23,7 +22,6 @@ const products: Product[] = [
     category: "HOBS",
     brand: "FABER",
     image: "/products/p1.png",
-    rating: 4.5,
     price: 10000,
     save: 2345,
     discount: "30%",
@@ -34,7 +32,6 @@ const products: Product[] = [
     category: "HOBS",
     brand: "PURE FLAMES",
     image: "/products/p1.png",
-    rating: 4.5,
     price: 10000,
     save: 2345,
   },
@@ -44,7 +41,6 @@ const products: Product[] = [
     category: "CHIMNEYS",
     brand: "FABER",
     image: "/products/p1.png",
-    rating: 4.3,
     price: 12000,
     save: 2000,
   },
@@ -54,7 +50,6 @@ const products: Product[] = [
     category: "CHIMNEYS",
     brand: "FABER",
     image: "/products/p1.png",
-    rating: 4.3,
     price: 12000,
     save: 2000,
   },
@@ -173,10 +168,6 @@ const ProductSection: React.FC = () => {
 
               {/* Info */}
               <div className="px-1.5 py-2 md:p-4">
-                <p className="text-yellow-400 flex text-[10px] md:text-base gap-1  font-roboto font-semibold">
-                  {product.rating}{" "}
-                  <Star className="h-3 w-3 md:h-5 md:w-5 md:pt-0.5" />
-                </p>
 
                 <h3 className="text-white text-[10px] md:text-base font-raleway font-semibold mt-1">
                   {product.name}
