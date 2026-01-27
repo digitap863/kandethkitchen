@@ -14,12 +14,7 @@ const HingesCard = () => {
 
       <div className="mt-4 flex items-center justify-between">
         <span className="text-white/70 text-[14px] md:text-[20px] font-medium">EBCO</span>
-        <span className="text-[#CE1919] font-semibold text-[14px] md:text-[20px] flex gap-2">
-          4.5{" "}
-          <span className="text-yellow-400 pt-0.5">
-            <Star size={22} />
-          </span>
-        </span>
+        
       </div>
 
       {/* Multiple Images */}

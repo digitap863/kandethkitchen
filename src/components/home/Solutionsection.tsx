@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Solutionsection = () => {
   return (
-    <section className="relative w-full  pt-10 md:py-20 overflow-hidden">
+    <section className="relative w-full  pt-10 md:py-20 overflow-hidden md:px-10">
       <div className="h-30 w-30 bg-red-500 left-[50%] top-[40%] blur-[150px] absolute z-10"></div>
       <div className="w-full mx-auto h-full absolute">
         <Image src={"/home/bggrid.png"} alt="bg" fill className="z-20" />

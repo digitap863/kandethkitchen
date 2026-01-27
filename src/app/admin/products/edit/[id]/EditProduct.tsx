@@ -3,13 +3,15 @@
 import { ArrowLeft, Plus, X, Save, ImageIcon, Loader2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { useBrandStore } from "@/stores/admin/brandStore";
 import { useTypeStore } from "@/stores/admin/typeStore";
 import { useProductStore } from "@/stores/admin/productStore";
 
-const AddProduct = () => {
+const EditProduct = () => {
     const router = useRouter();
+    const { id } = useParams();
+
     // Form state
     const [formData, setFormData] = useState({
         title: "",
@@ -22,16 +24,17 @@ const AddProduct = () => {
         specifications: [""]
     });
 
-    // Image files and previews (1 to 5 images)
-    const [imageFiles, setImageFiles] = useState<(File | null)[]>([null]);
-    const [imagePreviews, setImagePreviews] = useState<string[]>([""]);
+    // Image files and previews
+    const [imageFiles, setImageFiles] = useState<(File | null)[]>([]);
+    const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+    const [changeImages, setChangeImages] = useState(false);
 
     // Brand and Type Stores
     const { brands, fetchBrands, addBrand, loading: brandLoading } = useBrandStore();
     const { types, fetchTypes, addType, loading: typeLoading } = useTypeStore();
-    const { addProduct, loading: productLoading } = useProductStore();
+    const { updateProduct, fetchProductById, currentProduct, loading: productLoading } = useProductStore();
 
-    // Modal states for adding new product type/brand
+    // Modal states
     const [showProductTypeModal, setShowProductTypeModal] = useState(false);
     const [showBrandModal, setShowBrandModal] = useState(false);
     const [newProductType, setNewProductType] = useState("");
@@ -40,16 +43,34 @@ const AddProduct = () => {
     useEffect(() => {
         fetchBrands();
         fetchTypes();
-    }, [fetchBrands, fetchTypes]);
+        if (id) {
+            fetchProductById(id as string);
+        }
+    }, [fetchBrands, fetchTypes, fetchProductById, id]);
 
-    // Calculate discounted price
+    useEffect(() => {
+        if (currentProduct) {
+            setFormData({
+                title: currentProduct.title || "",
+                productType: currentProduct.productType || "",
+                brand: currentProduct.brand || "",
+                desc: currentProduct.desc || "",
+                mrp: currentProduct.mrp?.toString() || "",
+                offer: currentProduct.offer?.toString() || "",
+                keyFeatures: (currentProduct.keyFeatures && currentProduct.keyFeatures.length > 0) ? currentProduct.keyFeatures : [""],
+                specifications: (currentProduct.specifications && currentProduct.specifications.length > 0) ? currentProduct.specifications : [""]
+            });
+            setImagePreviews(currentProduct.img || []);
+            setImageFiles(new Array(currentProduct.img?.length || 0).fill(null));
+        }
+    }, [currentProduct]);
+
     const calculateDiscountedPrice = () => {
         const mrp = parseFloat(formData.mrp) || 0;
         const offer = parseFloat(formData.offer) || 0;
         return mrp - (mrp * (offer / 100));
     };
 
-    // Handle input changes
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setFormData({
             ...formData,
@@ -57,16 +78,13 @@ const AddProduct = () => {
         });
     };
 
-    // Handle image file selection
     const handleImageFileChange = (index: number, file: File | null) => {
+        setChangeImages(true);
         const newImageFiles = [...imageFiles];
         const newImagePreviews = [...imagePreviews];
 
         if (file) {
-            // Update file
             newImageFiles[index] = file;
-
-            // Create preview URL
             const reader = new FileReader();
             reader.onloadend = () => {
                 newImagePreviews[index] = reader.result as string;
@@ -74,34 +92,29 @@ const AddProduct = () => {
             };
             reader.readAsDataURL(file);
         } else {
-            // Clear file and preview
             newImageFiles[index] = null;
             newImagePreviews[index] = "";
             setImagePreviews(newImagePreviews);
         }
-
         setImageFiles(newImageFiles);
     };
 
-    // Add new image slot
     const addImageSlot = () => {
         if (imageFiles.length < 5) {
+            setChangeImages(true);
             setImageFiles([...imageFiles, null]);
             setImagePreviews([...imagePreviews, ""]);
         }
     };
 
-    // Remove image slot
     const removeImageSlot = (index: number) => {
         if (imageFiles.length > 1) {
-            const newImageFiles = imageFiles.filter((_, i) => i !== index);
-            const newImagePreviews = imagePreviews.filter((_, i) => i !== index);
-            setImageFiles(newImageFiles);
-            setImagePreviews(newImagePreviews);
+            setChangeImages(true);
+            setImageFiles(imageFiles.filter((_, i) => i !== index));
+            setImagePreviews(imagePreviews.filter((_, i) => i !== index));
         }
     };
 
-    // Handle adding new Product Type
     const handleAddProductType = async () => {
         if (newProductType.trim()) {
             await addType(newProductType.trim());
@@ -110,7 +123,6 @@ const AddProduct = () => {
         }
     };
 
-    // Handle adding new Brand
     const handleAddBrand = async () => {
         if (newBrand.trim()) {
             await addBrand(newBrand.trim());
@@ -119,15 +131,13 @@ const AddProduct = () => {
         }
     };
 
-    // Handle key features
     const addKeyFeature = () => {
         setFormData({ ...formData, keyFeatures: [...formData.keyFeatures, ""] });
     };
 
     const removeKeyFeature = (index: number) => {
         if (formData.keyFeatures.length > 1) {
-            const newFeatures = formData.keyFeatures.filter((_, i) => i !== index);
-            setFormData({ ...formData, keyFeatures: newFeatures });
+            setFormData({ ...formData, keyFeatures: formData.keyFeatures.filter((_, i) => i !== index) });
         }
     };
 
@@ -137,15 +147,13 @@ const AddProduct = () => {
         setFormData({ ...formData, keyFeatures: newFeatures });
     };
 
-    // Handle specifications
     const addSpecification = () => {
         setFormData({ ...formData, specifications: [...formData.specifications, ""] });
     };
 
     const removeSpecification = (index: number) => {
         if (formData.specifications.length > 1) {
-            const newSpecs = formData.specifications.filter((_, i) => i !== index);
-            setFormData({ ...formData, specifications: newSpecs });
+            setFormData({ ...formData, specifications: formData.specifications.filter((_, i) => i !== index) });
         }
     };
 
@@ -155,29 +163,18 @@ const AddProduct = () => {
         setFormData({ ...formData, specifications: newSpecs });
     };
 
-    // Handle form submission
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Validate that at least 1 image is uploaded
-        const imagesToUpload = imageFiles.filter((file): file is File => file !== null);
-        if (imagesToUpload.length === 0) {
-            alert("Please upload at least 1 image");
-            return;
-        }
-
         try {
             const data = new FormData();
-
-            // Basic fields
             data.append("title", formData.title);
-            data.append("description", formData.desc); // API expects 'description'
+            data.append("description", formData.desc);
             data.append("productType", formData.productType);
             data.append("brand", formData.brand);
             data.append("mrp", formData.mrp);
             data.append("offer", formData.offer);
 
-            // Arrays
             formData.keyFeatures.forEach(feature => {
                 if (feature.trim()) data.append("keyFeatures", feature.trim());
             });
@@ -186,19 +183,45 @@ const AddProduct = () => {
                 if (spec.trim()) data.append("specifications", spec.trim());
             });
 
-            // Images
-            imagesToUpload.forEach(file => {
+            // Image configuration for backend
+            const imageConfig: string[] = [];
+            const newFilesToUpload: File[] = [];
+
+            imagePreviews.forEach((preview, index) => {
+                if (!preview) return; // Skip empty slots
+
+                const file = imageFiles[index];
+                if (file) {
+                    // This is a new file upload
+                    imageConfig.push("NEW_FILE");
+                    newFilesToUpload.push(file);
+                } else if (preview.startsWith("http")) {
+                    // This is an existing Cloudinary URL
+                    imageConfig.push(preview);
+                }
+            });
+
+            data.append("imageConfig", JSON.stringify(imageConfig));
+            newFilesToUpload.forEach(file => {
                 data.append("images", file);
             });
 
-            await addProduct(data);
-            alert("Product created successfully!");
+            await updateProduct(id as string, data);
+            alert("Product updated successfully!");
             router.push("/admin/products");
         } catch (error) {
-            console.error("Submission failed:", error);
-            alert("Failed to create product. Please try again.");
+            console.error("Update failed:", error);
+            alert("Failed to update product.");
         }
     };
+
+    if (productLoading && !currentProduct) {
+        return (
+            <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+                <Loader2 className="w-12 h-12 text-[#CE1919] animate-spin" />
+            </div>
+        );
+    }
 
     const discountedPrice = calculateDiscountedPrice();
     const savings = (parseFloat(formData.mrp) || 0) - discountedPrice;
@@ -215,8 +238,8 @@ const AddProduct = () => {
                         <ArrowLeft size={24} />
                     </Link>
                     <div>
-                        <h2 className="text-2xl font-black font-times text-[#CE1919] uppercase">Add New Product</h2>
-                        <p className="text-[#CACBCD] text-xs uppercase tracking-widest mt-1">Create a new kitchen product</p>
+                        <h2 className="text-2xl font-black font-times text-[#CE1919] uppercase">Edit Product</h2>
+                        <p className="text-[#CACBCD] text-xs uppercase tracking-widest mt-1">Modify existing kitchen product</p>
                     </div>
                 </div>
             </div>
@@ -241,49 +264,43 @@ const AddProduct = () => {
                                     Add Image
                                 </button>
                             </div>
-                            <p className="text-xs text-[#888] mb-4 uppercase tracking-wide">Upload 1 to 5 images (Max 5)</p>
+                            <p className="text-xs text-[#888] mb-4 uppercase tracking-wide">
+                                {changeImages ? "Update images (Replacing all)" : "Viewing existing images. Upload to change."}
+                            </p>
 
                             <div className="space-y-4">
-                                {imageFiles.map((file, index) => (
+                                {imagePreviews.map((preview, index) => (
                                     <div key={index}>
                                         <div className="flex items-center justify-between mb-2">
                                             <label className="block text-xs text-[#888] uppercase tracking-wide">
-                                                Image #{index + 1} *
+                                                Image #{index + 1}
                                             </label>
-                                            {imageFiles.length > 1 && (
+                                            {imagePreviews.length > 1 && (
                                                 <button
                                                     type="button"
                                                     onClick={() => removeImageSlot(index)}
                                                     className="p-1 bg-red-600/10 hover:bg-red-600/20 text-red-500 rounded transition-all cursor-pointer"
-                                                    title="Remove this image slot"
                                                 >
                                                     <X size={14} />
                                                 </button>
                                             )}
                                         </div>
 
-                                        {/* Preview or Upload Area */}
-                                        {imagePreviews[index] ? (
-                                            <div className="relative group">
-                                                <div className="aspect-square rounded-lg overflow-hidden border-2 border-[#CE1919]/30 bg-[#2a2a2a]">
+                                        <div className="relative group">
+                                            <div className="aspect-square rounded-lg overflow-hidden border-2 border-[#CE1919]/30 bg-[#2a2a2a]">
+                                                {preview ? (
                                                     <img
-                                                        src={imagePreviews[index]}
+                                                        src={preview}
                                                         alt={`Preview ${index + 1}`}
                                                         className="w-full h-full object-cover"
                                                     />
-                                                </div>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => handleImageFileChange(index, null)}
-                                                    className="absolute top-2 right-2 p-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-all opacity-0 group-hover:opacity-100 cursor-pointer"
-                                                    title="Clear this image"
-                                                >
-                                                    <X size={16} />
-                                                </button>
-                                                <div className="mt-2 text-xs text-[#888] truncate">{file?.name}</div>
+                                                ) : (
+                                                    <div className="w-full h-full flex items-center justify-center">
+                                                        <ImageIcon className="text-white/10" size={40} />
+                                                    </div>
+                                                )}
                                             </div>
-                                        ) : (
-                                            <label className="block aspect-square rounded-lg border-2 border-dashed border-white/20 hover:border-[#CE1919]/50 bg-black/20 hover:bg-black/30 transition-all cursor-pointer">
+                                            <label className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-all cursor-pointer rounded-lg">
                                                 <input
                                                     type="file"
                                                     accept="image/*"
@@ -292,17 +309,10 @@ const AddProduct = () => {
                                                         if (file) handleImageFileChange(index, file);
                                                     }}
                                                     className="hidden"
-                                                    required={!imagePreviews[index]}
                                                 />
-                                                <div className="w-full h-full flex flex-col items-center justify-center gap-2 p-4">
-                                                    <ImageIcon className="text-[#CE1919] opacity-50" size={40} />
-                                                    <div className="text-center">
-                                                        <div className="text-sm text-[#CACBCD] font-medium">Click to upload</div>
-                                                        <div className="text-xs text-[#888] mt-1">PNG, JPG, WEBP</div>
-                                                    </div>
-                                                </div>
+                                                <div className="text-xs font-bold uppercase tracking-widest text-white">Change Image</div>
                                             </label>
-                                        )}
+                                        </div>
                                     </div>
                                 ))}
                             </div>
@@ -311,42 +321,26 @@ const AddProduct = () => {
 
                     {/* Right Column - Product Details */}
                     <div className="lg:col-span-2 space-y-6">
-                        {/* Basic Information */}
                         <div className="bg-[#1a1a1a] border border-white/10 rounded-xl p-6">
                             <h3 className="text-lg font-black font-times text-[#CE1919] uppercase mb-4">Basic Information</h3>
-
                             <div className="space-y-4">
-                                {/* Product Title */}
                                 <div>
-                                    <label className="block text-xs text-[#888] uppercase tracking-wide mb-2">
-                                        Product Title *
-                                    </label>
+                                    <label className="block text-xs text-[#888] uppercase tracking-wide mb-2">Product Title *</label>
                                     <input
                                         type="text"
                                         name="title"
                                         value={formData.title}
                                         onChange={handleChange}
-                                        placeholder="e.g., Modern Premium Kitchen Hood"
-                                        className="w-full px-4 py-2.5 bg-black/20 border border-white/10 rounded-lg text-sm text-[#D9D9D9] placeholder:text-[#555] focus:outline-none focus:border-[#CE1919]/50 transition-all"
+                                        className="w-full px-4 py-2.5 bg-black/20 border border-white/10 rounded-lg text-sm text-[#D9D9D9] focus:outline-none focus:border-[#CE1919]/50 transition-all"
                                         required
                                     />
                                 </div>
 
-                                {/* Product Type & Brand */}
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <div className="flex items-center justify-between mb-2">
-                                            <label className="block text-xs text-[#888] uppercase tracking-wide">
-                                                Product Type *
-                                            </label>
-                                            <button
-                                                type="button"
-                                                onClick={() => setShowProductTypeModal(true)}
-                                                className="text-[#CE1919] hover:text-[#AA1E1E] transition-all p-1"
-                                                title="Add New Product Type"
-                                            >
-                                                <Plus size={16} />
-                                            </button>
+                                            <label className="block text-xs text-[#888] uppercase tracking-wide">Product Type *</label>
+                                            <button type="button" onClick={() => setShowProductTypeModal(true)} className="text-[#CE1919] hover:text-[#AA1E1E] p-1"><Plus size={16} /></button>
                                         </div>
                                         <select
                                             name="productType"
@@ -355,28 +349,17 @@ const AddProduct = () => {
                                             className="w-full px-4 py-2.5 bg-black/20 border border-white/10 rounded-lg text-sm text-[#D9D9D9] focus:outline-none focus:border-[#CE1919]/50 transition-all cursor-pointer"
                                             required
                                         >
-                                            <option value="" className="bg-[#1a1a1a]">Select Product Type</option>
+                                            <option value="">Select Product Type</option>
                                             {types.map((type) => (
-                                                <option key={type._id} value={type.title} className="bg-[#1a1a1a]">
-                                                    {type.title}
-                                                </option>
+                                                <option key={type._id} value={type.title} className="bg-[#1a1a1a]">{type.title}</option>
                                             ))}
                                         </select>
                                     </div>
 
                                     <div>
                                         <div className="flex items-center justify-between mb-2">
-                                            <label className="block text-xs text-[#888] uppercase tracking-wide">
-                                                Brand *
-                                            </label>
-                                            <button
-                                                type="button"
-                                                onClick={() => setShowBrandModal(true)}
-                                                className="text-[#CE1919] hover:text-[#AA1E1E] transition-all p-1"
-                                                title="Add New Brand"
-                                            >
-                                                <Plus size={16} />
-                                            </button>
+                                            <label className="block text-xs text-[#888] uppercase tracking-wide">Brand *</label>
+                                            <button type="button" onClick={() => setShowBrandModal(true)} className="text-[#CE1919] hover:text-[#AA1E1E] p-1"><Plus size={16} /></button>
                                         </div>
                                         <select
                                             name="brand"
@@ -385,200 +368,105 @@ const AddProduct = () => {
                                             className="w-full px-4 py-2.5 bg-black/20 border border-white/10 rounded-lg text-sm text-[#D9D9D9] focus:outline-none focus:border-[#CE1919]/50 transition-all cursor-pointer"
                                             required
                                         >
-                                            <option value="" className="bg-[#1a1a1a]">Select Brand</option>
+                                            <option value="">Select Brand</option>
                                             {brands.map((brand) => (
-                                                <option key={brand._id} value={brand.name} className="bg-[#1a1a1a]">
-                                                    {brand.name}
-                                                </option>
+                                                <option key={brand._id} value={brand.name} className="bg-[#1a1a1a]">{brand.name}</option>
                                             ))}
                                         </select>
                                     </div>
                                 </div>
 
-                                {/* Description */}
                                 <div>
-                                    <label className="block text-xs text-[#888] uppercase tracking-wide mb-2">
-                                        Description *
-                                    </label>
+                                    <label className="block text-xs text-[#888] uppercase tracking-wide mb-2">Description *</label>
                                     <textarea
                                         name="desc"
                                         value={formData.desc}
                                         onChange={handleChange}
-                                        placeholder="Enter detailed product description..."
                                         rows={4}
-                                        className="w-full px-4 py-2.5 bg-black/20 border border-white/10 rounded-lg text-sm text-[#D9D9D9] placeholder:text-[#555] focus:outline-none focus:border-[#CE1919]/50 transition-all resize-none"
+                                        className="w-full px-4 py-2.5 bg-black/20 border border-white/10 rounded-lg text-sm text-[#D9D9D9] focus:outline-none focus:border-[#CE1919]/50 transition-all resize-none"
                                         required
                                     />
                                 </div>
                             </div>
                         </div>
 
-                        {/* Pricing */}
                         <div className="bg-[#1a1a1a] border border-white/10 rounded-xl p-6">
                             <h3 className="text-lg font-black font-times text-[#CE1919] uppercase mb-4">Pricing</h3>
-
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                 <div>
-                                    <label className="block text-xs text-[#888] uppercase tracking-wide mb-2">
-                                        MRP (₹) *
-                                    </label>
+                                    <label className="block text-xs text-[#888] uppercase tracking-wide mb-2">MRP (₹) *</label>
                                     <input
                                         type="number"
                                         name="mrp"
                                         value={formData.mrp}
                                         onChange={handleChange}
-                                        placeholder="e.g., 45000"
-                                        min="0"
-                                        step="1"
-                                        className="w-full px-4 py-2.5 bg-black/20 border border-white/10 rounded-lg text-sm text-[#D9D9D9] placeholder:text-[#555] focus:outline-none focus:border-[#CE1919]/50 transition-all"
+                                        className="w-full px-4 py-2.5 bg-black/20 border border-white/10 rounded-lg text-sm text-[#D9D9D9] focus:outline-none focus:border-[#CE1919]/50 transition-all"
                                         required
                                     />
                                 </div>
-
                                 <div>
-                                    <label className="block text-xs text-[#888] uppercase tracking-wide mb-2">
-                                        Offer (%) *
-                                    </label>
+                                    <label className="block text-xs text-[#888] uppercase tracking-wide mb-2">Offer (%) *</label>
                                     <input
                                         type="number"
                                         name="offer"
                                         value={formData.offer}
                                         onChange={handleChange}
-                                        placeholder="e.g., 15"
-                                        min="0"
-                                        max="100"
-                                        step="1"
-                                        className="w-full px-4 py-2.5 bg-black/20 border border-white/10 rounded-lg text-sm text-[#D9D9D9] placeholder:text-[#555] focus:outline-none focus:border-[#CE1919]/50 transition-all"
+                                        className="w-full px-4 py-2.5 bg-black/20 border border-white/10 rounded-lg text-sm text-[#D9D9D9] focus:outline-none focus:border-[#CE1919]/50 transition-all"
                                         required
                                     />
                                 </div>
                             </div>
-
-                            {/* Price Preview */}
                             {formData.mrp && formData.offer && (
                                 <div className="bg-black/20 rounded-lg p-4 border border-white/5">
                                     <div className="flex items-end justify-between">
                                         <div>
-                                            <div className="text-[#888] text-xs uppercase tracking-wide mb-1">Final Price</div>
+                                            <div className="text-[#888] text-xs font-bold uppercase tracking-wide">Final Price</div>
                                             <div className="flex items-baseline gap-3">
                                                 <div className="text-2xl font-black text-[#D9D9D9]">₹{discountedPrice.toLocaleString()}</div>
                                                 <div className="text-sm text-[#888] line-through">₹{parseFloat(formData.mrp).toLocaleString()}</div>
                                             </div>
-                                        </div>
-                                        <div className="text-right">
-                                            <div className="text-xl font-black text-[#39964B]">-{formData.offer}%</div>
-                                            <div className="text-xs text-[#888]">Save ₹{savings.toLocaleString()}</div>
                                         </div>
                                     </div>
                                 </div>
                             )}
                         </div>
 
-                        {/* Key Features */}
                         <div className="bg-[#1a1a1a] border border-white/10 rounded-xl p-6">
                             <div className="flex items-center justify-between mb-4">
                                 <h3 className="text-lg font-black font-times text-[#CE1919] uppercase">Key Features</h3>
-                                <button
-                                    type="button"
-                                    onClick={addKeyFeature}
-                                    className="flex items-center gap-2 px-3 py-1.5 bg-[#CE1919]/10 hover:bg-[#CE1919]/20 text-[#CE1919] rounded-lg transition-all text-xs font-bold uppercase tracking-wide cursor-pointer"
-                                >
-                                    <Plus size={14} />
-                                    Add Feature
-                                </button>
+                                <button type="button" onClick={addKeyFeature} className="flex items-center gap-2 px-3 py-1.5 bg-[#CE1919]/10 text-[#CE1919] rounded-lg text-xs font-bold uppercase cursor-pointer"><Plus size={14} /> Add Feature</button>
                             </div>
-
                             <div className="space-y-3">
                                 {formData.keyFeatures.map((feature, index) => (
                                     <div key={index} className="flex gap-2">
-                                        <input
-                                            type="text"
-                                            value={feature}
-                                            onChange={(e) => handleKeyFeatureChange(index, e.target.value)}
-                                            placeholder={`e.g., Touch Control Panel with Digital Display`}
-                                            className="flex-1 px-4 py-2.5 bg-black/20 border border-white/10 rounded-lg text-sm text-[#D9D9D9] placeholder:text-[#555] focus:outline-none focus:border-[#CE1919]/50 transition-all"
-                                            required
-                                        />
-                                        {formData.keyFeatures.length > 1 && (
-                                            <button
-                                                type="button"
-                                                onClick={() => removeKeyFeature(index)}
-                                                className="p-2.5 bg-red-600/10 hover:bg-red-600/20 text-red-500 rounded-lg transition-all cursor-pointer"
-                                            >
-                                                <X size={18} />
-                                            </button>
-                                        )}
+                                        <input type="text" value={feature} onChange={(e) => handleKeyFeatureChange(index, e.target.value)} className="flex-1 px-4 py-2.5 bg-black/20 border border-white/10 rounded-lg text-sm text-[#D9D9D9] focus:outline-none focus:border-[#CE1919]/50 transition-all" required />
+                                        {formData.keyFeatures.length > 1 && <button type="button" onClick={() => removeKeyFeature(index)} className="p-2.5 bg-red-600/10 text-red-500 rounded-lg cursor-pointer"><X size={18} /></button>}
                                     </div>
                                 ))}
                             </div>
                         </div>
 
-                        {/* Specifications */}
                         <div className="bg-[#1a1a1a] border border-white/10 rounded-xl p-6">
                             <div className="flex items-center justify-between mb-4">
-                                <h3 className="text-lg font-black font-times text-[#CE1919] uppercase">Technical Specifications</h3>
-                                <button
-                                    type="button"
-                                    onClick={addSpecification}
-                                    className="flex items-center gap-2 px-3 py-1.5 bg-[#CE1919]/10 hover:bg-[#CE1919]/20 text-[#CE1919] rounded-lg transition-all text-xs font-bold uppercase tracking-wide cursor-pointer"
-                                >
-                                    <Plus size={14} />
-                                    Add Spec
-                                </button>
+                                <h3 className="text-lg font-black font-times text-[#CE1919] uppercase">Specifications</h3>
+                                <button type="button" onClick={addSpecification} className="flex items-center gap-2 px-3 py-1.5 bg-[#CE1919]/10 text-[#CE1919] rounded-lg text-xs font-bold uppercase cursor-pointer"><Plus size={14} /> Add Spec</button>
                             </div>
-
-                            <p className="text-xs text-[#888] mb-4 uppercase tracking-wide">Format: Label: Value (e.g., &quot;Suction Capacity: 1200 m³/h")</p>
-
                             <div className="space-y-3">
                                 {formData.specifications.map((spec, index) => (
                                     <div key={index} className="flex gap-2">
-                                        <input
-                                            type="text"
-                                            value={spec}
-                                            onChange={(e) => handleSpecificationChange(index, e.target.value)}
-                                            placeholder="e.g., Suction Capacity: 1200 m³/h"
-                                            className="flex-1 px-4 py-2.5 bg-black/20 border border-white/10 rounded-lg text-sm text-[#D9D9D9] placeholder:text-[#555] focus:outline-none focus:border-[#CE1919]/50 transition-all"
-                                            required
-                                        />
-                                        {formData.specifications.length > 1 && (
-                                            <button
-                                                type="button"
-                                                onClick={() => removeSpecification(index)}
-                                                className="p-2.5 bg-red-600/10 hover:bg-red-600/20 text-red-500 rounded-lg transition-all cursor-pointer"
-                                            >
-                                                <X size={18} />
-                                            </button>
-                                        )}
+                                        <input type="text" value={spec} onChange={(e) => handleSpecificationChange(index, e.target.value)} className="flex-1 px-4 py-2.5 bg-black/20 border border-white/10 rounded-lg text-sm text-[#D9D9D9] focus:outline-none focus:border-[#CE1919]/50 transition-all" required />
+                                        {formData.specifications.length > 1 && <button type="button" onClick={() => removeSpecification(index)} className="p-2.5 bg-red-600/10 text-red-500 rounded-lg cursor-pointer"><X size={18} /></button>}
                                     </div>
                                 ))}
                             </div>
                         </div>
 
-                        {/* Submit Button */}
                         <div className="flex items-center gap-4">
-                            <button
-                                type="submit"
-                                disabled={productLoading}
-                                className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-[#CE1919] hover:bg-[#AA1E1E] text-white rounded-lg transition-all font-bold uppercase tracking-wide text-sm shadow-[0_0_15px_rgba(206,25,25,0.3)] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                            >
-                                {productLoading ? (
-                                    <>
-                                        <Loader2 size={18} className="animate-spin" />
-                                        <span>Creating...</span>
-                                    </>
-                                ) : (
-                                    <>
-                                        <Save size={18} />
-                                        <span>Create Product</span>
-                                    </>
-                                )}
+                            <button type="submit" disabled={productLoading} className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-[#CE1919] hover:bg-[#AA1E1E] text-white rounded-lg transition-all font-bold uppercase text-sm shadow-[0_0_15px_rgba(206,25,25,0.3)] cursor-pointer disabled:opacity-50">
+                                {productLoading ? <Loader2 size={18} className="animate-spin" /> : <Save size={18} />}
+                                <span>{productLoading ? "Updating..." : "Update Product"}</span>
                             </button>
-                            <Link
-                                href="/admin/products"
-                                className="px-6 py-4 bg-white/5 hover:bg-white/10 text-[#CACBCD] rounded-lg transition-all font-bold uppercase tracking-wide text-sm border border-white/10 cursor-pointer"
-                            >
-                                Cancel
-                            </Link>
+                            <Link href="/admin/products" className="px-6 py-4 bg-white/5 text-[#CACBCD] rounded-lg border border-white/10 font-bold uppercase text-sm">Cancel</Link>
                         </div>
                     </div>
                 </div>
@@ -673,6 +561,6 @@ const AddProduct = () => {
             )}
         </div>
     );
-}
+};
 
-export default AddProduct;
+export default EditProduct;

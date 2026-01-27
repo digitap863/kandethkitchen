@@ -1,8 +1,8 @@
 import mongoose, { Schema, model, models, Document } from "mongoose";
 
 export interface IProduct extends Document {
-  productType: mongoose.Types.ObjectId;
-  brand: mongoose.Types.ObjectId;
+  productType: string;
+  brand: string;
   img: string[];
   title: string;
   slug: string;
@@ -18,14 +18,12 @@ export interface IProduct extends Document {
 const ProductSchema = new Schema<IProduct>(
   {
     productType: {
-      type: Schema.Types.ObjectId,
-      ref: "ProductType",
+      type: String,
       required: true,
     },
 
     brand: {
-      type: Schema.Types.ObjectId,
-      ref: "Brand",
+      type: String,
       required: true,
     },
 

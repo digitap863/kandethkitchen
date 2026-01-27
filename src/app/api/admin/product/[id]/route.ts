@@ -3,6 +3,25 @@ import connect from "@/lib/db/connection";
 import Product from "@/lib/db/models/Product";
 import { NextRequest, NextResponse } from "next/server";
 
+export async function GET(
+    req: NextRequest,
+    { params }: { params: Promise<{ id: string }> }
+) {
+    try {
+        await connect();
+        const { id } = await params;
+        const product = await Product.findById(id);
+
+        if (!product) {
+            return NextResponse.json({ message: "Product not found" }, { status: 404 });
+        }
+
+        return NextResponse.json(product);
+    } catch (error) {
+        return new NextResponse("Error fetching product: " + error, { status: 400 });
+    }
+}
+
 export async function PATCH(
     req: NextRequest,
     { params }: { params: Promise<{ id: string }> }
@@ -52,29 +71,68 @@ export async function PATCH(
         const specifications = getArray("specifications");
         if (specifications) updateData.specifications = specifications;
 
-        // Simplified Image Logic
+        // Advanced Image Logic
         const product = await Product.findById(id);
         if (!product) {
             return NextResponse.json({ message: "Product not found" }, { status: 404 });
         }
 
+        const imageConfigRaw = formData.get("imageConfig"); // Expected JSON: Array of "existing_url" or "NEW_FILE"
         const newFiles = formData.getAll("images") as File[];
-        const hasNewImages = newFiles.length > 0 && newFiles[0].size > 0;
+        
+        if (imageConfigRaw) {
+            const imageConfig = JSON.parse(imageConfigRaw as string) as string[];
+            const currentImages = product.img || [];
+            
+            // 1. Identify and delete removed images
+            for (const url of currentImages) {
+                if (!imageConfig.includes(url)) {
+                    await deleteFromCloudinary(url);
+                }
+            }
 
-        if (hasNewImages) {
-            // 1. Delete ALL old images from Cloudinary
+            // 2. Upload new files and build final array
+            const finalImages: string[] = [];
+            let newFileIndex = 0;
+
+            for (const item of imageConfig) {
+                if (item === "NEW_FILE") {
+                    const file = newFiles[newFileIndex++];
+                    if (file && typeof file !== "string" && file.size > 0) {
+                        const bytes = await file.arrayBuffer();
+                        const buffer = Buffer.from(bytes);
+                        
+                        const uploadResult = await new Promise<any>((resolve, reject) => {
+                            const uploadStream = cloudinary.uploader.upload_stream(
+                                { folder: "KandethKitchen/Products", resource_type: "auto" },
+                                (error, result) => {
+                                    if (error) reject(error);
+                                    else if (result) resolve(result);
+                                    else reject(new Error("Upload failed"));
+                                }
+                            );
+                            uploadStream.end(buffer);
+                        });
+                        finalImages.push(uploadResult.secure_url);
+                    }
+                } else {
+                    // Keep existing URL
+                    finalImages.push(item);
+                }
+            }
+            updateData.img = finalImages;
+        } else if (newFiles.length > 0 && newFiles[0].size > 0) {
+            // Fallback: If no config but files present, replace all (old logic)
             const oldImages = product.img || [];
             for (const url of oldImages) {
                 await deleteFromCloudinary(url);
             }
 
-            // 2. Upload ALL new images to Cloudinary
             const uploadedUrls: string[] = [];
             for (const file of newFiles) {
                 if (file && typeof file !== "string" && file.size > 0) {
                     const bytes = await file.arrayBuffer();
                     const buffer = Buffer.from(bytes);
-                    
                     const uploadResult = await new Promise<any>((resolve, reject) => {
                         const uploadStream = cloudinary.uploader.upload_stream(
                             { folder: "KandethKitchen/Products", resource_type: "auto" },
@@ -89,7 +147,6 @@ export async function PATCH(
                     uploadedUrls.push(uploadResult.secure_url);
                 }
             }
-            // 3. Set the new image list
             updateData.img = uploadedUrls;
         }
 
