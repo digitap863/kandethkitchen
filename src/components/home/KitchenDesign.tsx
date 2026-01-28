@@ -25,7 +25,7 @@ const products: KitchenProduct[] = [
     title: "Wardrobe",
     image: "/home/de1.png",
     tags: [
-      { name: "EECO" },
+      { name: "EBCO" },
       { name: "SLEEK" },
       { name: "OLIVE" },
       { name: "EVERSHINE" },
@@ -48,7 +48,7 @@ const products: KitchenProduct[] = [
     title: "Kitchen",
     image: "/home/de4.png",
     tags: [
-      { name: "EECO" },
+      { name: "EBCO" },
       { name: "SLEEK" },
       { name: "HETTICH" },
       { name: "METTA" },
@@ -58,13 +58,55 @@ const products: KitchenProduct[] = [
     id: 5,
     title: "cabin lights",
     image: "/home/de5.png",
-    tags: [{ name: "EECO" }],
+    tags: [{ name: "EBCO" }],
   },
   {
     id: 6,
-    title: "cabin lights",
-    image: "/home/de5.png",
-    tags: [{ name: "EECO" }],
+    title: "sinks",
+    image: "/home/de6.jpg",
+    tags: [{ name: "FRANKE" },{ name: "SYLUX" }],
+  },
+  {
+    id: 7,
+    title: "edge bands",
+    image: "/home/de7.jpg",
+    tags: [{ name: "E3" }],
+  },
+  {
+    id: 8,
+    title: "wall cladding",
+    image: "/home/de8.jpg",
+    tags: [{ name: "E3" },{ name: "AVITUS" },{ name: "POLUWOOD" }],
+  },
+  {
+    id: 9,
+    title: "profiles",
+    image: "/home/de9.jpg",
+    tags: [{ name: "EBCO" },{ name: "SLEEK" },{ name: "METTA" }],
+  },
+  {
+    id: 10,
+    title: "interior cabinet lights",
+    image: "/home/de10.jpg",
+    tags: [{ name: "EBCO" }],
+  },
+  {
+    id: 11,
+    title: "door locks",
+    image: "/home/de11.jpg",
+    tags: [{ name: "DOOR SET" },{ name: "JOLLY" },{ name: "DEKLER" }],
+  },
+  {
+    id: 12,
+    title: "office furniture fittings",
+    image: "/home/de12.jpg",
+    tags: [{ name: "EBCO" }],
+  },
+  {
+    id: 13,
+    title: "architectural hardware",
+    image: "/home/de13.jpg",
+    tags: [{ name: "EBCO" },{ name: "METTA" }],
   },
 ];
 

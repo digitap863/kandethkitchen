@@ -76,15 +76,19 @@ const Footer = () => {
             </p>
 
             <div className=" flex items-center gap-4">
-              <div className="w-12 h-12 border border-white  flex items-center justify-center">
-                <Facebook />
-              </div>
+              <Link href={"https://www.facebook.com/p/Kandeth-Kitchen-Accessories-Vyttila-Cochin-100057456248849/"} target="_blank">
+                <div className="w-12 h-12 border border-white  flex items-center justify-center">
+                  <Facebook />
+                </div>
+              </Link>
               <div className="w-12 h-12 border border-white  flex items-center justify-center">
                 <Youtube />
               </div>
-              <div className="w-12 h-12 border border-white  flex items-center justify-center">
-                <Instagram />
-              </div>
+              <Link href={"https://www.instagram.com/kandeth.kitchenandaccessories/"} target="_blank">
+                <div className="w-12 h-12 border border-white  flex items-center justify-center">
+                  <Instagram />
+                </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -155,13 +159,12 @@ const Footer = () => {
 
             <div className="flex justify-evenly text-base text-[#D9D9D9] font-sans">
               <div className="flex flex-col gap-2">
-                <span>Home</span>
-                <span>Services</span>
-                <span>About</span>
+                <Link href={"/"}><span>Home</span></Link>
+                <Link href={"/services"}><span>Services</span></Link>
               </div>
               <div className="flex flex-col gap-2">
-                <span>Gallery</span>
-                <span>Products</span>
+                <Link href={"/aboutus"}><span>About us</span></Link>
+                <Link href={"/products"}><span>Products</span></Link>
               </div>
             </div>
           </div>
