@@ -101,7 +101,7 @@ const WhatWeOfferSection = () => {
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-y-20 gap-x-8 font-raleway">
             {services.map((service) => (
-                
+
               <div
                 key={service.id}
                 className={`rounded-2xl flex flex-col justify-between p-8 border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.02)_0%,rgba(255,255,255,0)_40%,rgba(255,255,255,0.05)_57%,rgba(255,255,255,0.05)_61%,rgba(255,255,255,0)_79%,rgba(255,255,255,0.02)_99%)] hover:bg-[linear-gradient(135deg,rgba(206,25,25,0.02)_0%,rgba(206,25,25,0)_40%,rgba(206,25,25,0.05)_57%,rgba(206,25,25,0.05)_61%,rgba(206,25,25,0)_79%,rgba(206,25,25,0.02)_99%)] cursor-pointer hover:border-[#CE1919]/15 hover:-translate-y-10 transition-all duration-500`}

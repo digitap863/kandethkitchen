@@ -29,6 +29,8 @@ interface ProductStore {
     pagination: Pagination | null;
     loading: boolean;
     error: string | null;
+    latestProducts: Product[];
+    fetchLatestProducts: () => Promise<void>;
     fetchProducts: (params?: {
         brand?: string;
         productType?: string;
@@ -48,6 +50,7 @@ export const useProductStore = create<ProductStore>((set) => ({
     currentProduct: null,
     loading: false,
     error: null,
+    latestProducts: [],
 
     fetchProducts: async (params = {}) => {
         set({ loading: true, error: null });
@@ -87,6 +90,17 @@ export const useProductStore = create<ProductStore>((set) => ({
             const message = error instanceof Error ? error.message : "Failed to fetch product";
             set({ error: message, loading: false, currentProduct: null });
             return null;
+        }
+    },
+
+    fetchLatestProducts: async () => {
+        set({ loading: true, error: null });
+        try {
+            const response = await api.get("/user/latest-product");
+            set({ latestProducts: response.data, loading: false });
+        } catch (error) {
+            const message = error instanceof Error ? error.message : "Failed to fetch latest products";
+            set({ error: message, loading: false });
         }
     }
 }));
