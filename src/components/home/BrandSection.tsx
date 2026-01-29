@@ -59,11 +59,11 @@ const BrandSection = () => {
       <section className="relative z-30 w-full py-16 overflow-hidden">
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4">
-          <p className="text-center text-[#979797] tracking-wider mb-8 text-[20px] md:text-[28px] font-raleway">
+          <p className="text-center text-[#979797] tracking-wider mb-8 text-[20px] md:text-[28px] font-raleway" data-aos="fade-up">
             Trusted by <span className="text-white">leading global</span> kitchen brands
           </p>
 
-          <div className="flex flex-wrap justify-center items-center gap-4">
+          <div className="flex flex-wrap justify-center items-center gap-4" data-aos="fade-up" data-aos-delay="100">
             {brands.map((brand) => (
               <div
                 key={brand.id}

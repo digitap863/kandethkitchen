@@ -15,7 +15,7 @@ const ExpertSection = () => {
   return (
     <div className=" w-full pt-20 relative">
       <div className=" w-full flex px-4 md:px-0 flex-col justify-center items-center relative z-30">
-        <h1 className="text-[24px] md:text-[52px] text-center diamond-text leading-none font-semibold font-raleway">
+        <h1 className="text-[24px] md:text-[52px] text-center diamond-text leading-none font-semibold font-raleway" data-aos="fade-down">
           Expert Consultation
         </h1>
         <p className="text-[16px] md:text-[28px] mt-5 font-light font-roboto text-center max-w-231.5">
@@ -30,7 +30,7 @@ const ExpertSection = () => {
         <section className="relative w-full  pt-20 overflow-hidden font-raleway px-4">
           {/* Background glow */}
 
-          <div className="relative z-10 max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 justify-center gap-x-16 gap-y-6">
+          <div className="relative z-10 max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 justify-center gap-x-16 gap-y-6" data-aos="fade-up" data-aos-delay="200">
             {features.map((feature) => (
               <div
                 key={feature.id}

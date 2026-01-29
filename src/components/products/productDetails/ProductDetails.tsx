@@ -59,7 +59,7 @@ const ProductDetails: React.FC = () => {
     <section className="relative w-full pt-44 pb-24 overflow-hidden">
       <div className="relative z-10 max-w-7xl px-4 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 md:gap-30">
         {/* Left: Image Gallery */}
-        <div className="">
+        <div className="" data-aos="fade-right">
           <div className="block md:hidden font-raleway mb-10">
             <p className="text-[#CE1919]  uppercase tracking-wide text-base font-medium">
               {currentProduct.brand}
@@ -111,7 +111,7 @@ const ProductDetails: React.FC = () => {
         </div>
 
         {/* Right: Info */}
-        <div className="font-raleway">
+        <div className="font-raleway" data-aos="fade-left" data-aos-delay="200">
           <div className="md:block hidden">
             <p className="text-[#CE1919]  uppercase tracking-wide text-base font-medium">
               {currentProduct.brand}

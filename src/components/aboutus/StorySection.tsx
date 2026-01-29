@@ -9,13 +9,13 @@ const StorySection = () => {
       <div className="absolute h-full w-full bg-[linear-gradient(90deg,rgba(13,13,13,1)_0%,rgba(13,13,13,0.2)_20%,rgba(13,13,13,0)_50%,rgba(13,13,13,0.2)_80%,rgba(13,13,13,1)_100%)]"></div>
       <div className="absolute h-full w-full bg-[linear-gradient(180deg,rgba(13,13,13,1)_0%,rgba(13,13,13,0.2)_20%,rgba(13,13,13,0)_50%,rgba(13,13,13,0.2)_80%,rgba(13,13,13,1)_100%)]"></div>
       <div className="h-screen w-full flex flex-col justify-center items-center px-4 md:px-0 relative z-30">
-        <h1 className="text-[24px] md:text-[52px] text-center diamond-text leading-none font-semibold font-raleway">
+        <h1 className="text-[24px] md:text-[52px] text-center diamond-text leading-none font-semibold font-raleway" data-aos="fade-down">
           Our Story
         </h1>
         <p className="text-[16px] md:text-[28px] mt-5 font-light font-roboto text-center">
           A journey of passion and excellence
         </p>
-        <div className="font-roboto font-light text-[16px] md:text-lg text-white max-w-234.25 text-center space-y-5 mt-10">
+        <div className="font-roboto font-light text-[16px] md:text-lg text-white max-w-234.25 text-center space-y-5 mt-10" data-aos="fade-up" data-aos-delay="200">
           <p>
             At Kandeth Kitchen Accessories & Appliances,{" "}
             <span className="text-[#979797]">
@@ -26,7 +26,7 @@ const StorySection = () => {
             —designed to elevate both functionality and aesthetics.
           </p>
           <p>
-            Our journey began in 2006–07 with our first showroom at Thaikudam,{" "}
+            Our journey began in 2006–07 with our first showroom at thykoodam,{" "}
             <span className="text-[#979797]">
               Ernakulam. As our reputation for quality and reliability grew, we
               expanded and later relocated to a larger, more accessible space

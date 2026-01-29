@@ -29,7 +29,7 @@ const Solutionsection = () => {
           </div>
         </div>
         {/* Left Image */}
-        <div className="flex justify-center md:justify-start">
+        <div className="flex justify-center md:justify-start" data-aos="fade-right">
           <div className="relative w-90 h-133.75 rounded-3xl overflow-hidden shadow-2xl">
             <video
               src="/home/svideo.mp4"
@@ -44,7 +44,7 @@ const Solutionsection = () => {
         </div>
 
         {/* Right Content */}
-        <div className=" flex flex-col justify-between">
+        <div className=" flex flex-col justify-between" data-aos="fade-left">
           <div className="hidden flex-col items-start -translate-x-30 md:flex">
             <h2 className="text-[52px] diamond-text leading-none font-semibold font-raleway">
               <span className="block text-center">Solutions for</span>

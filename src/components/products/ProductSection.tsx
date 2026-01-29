@@ -82,7 +82,7 @@ const ProductSection: React.FC = () => {
     <section className="relative w-full  pb-24">
       <div className="relative z-10 max-w-7xl mx-auto px-2">
         {/* Top toggle */}
-        <div className="flex justify-center gap-4 mb-8 font-raleway ">
+        <div className="flex justify-center gap-4 mb-8 font-raleway " data-aos="fade-down">
           <div className="bg-[#1F1F1F] p-1.5 flex gap-3 rounded-[20px]">
             <button
               onClick={() => handleViewModeChange("product")}
@@ -104,7 +104,7 @@ const ProductSection: React.FC = () => {
         </div>
 
         {/* Category filters */}
-        <div className="flex flex-wrap gap-5 md:gap-10 border-b border-white/30 pb-6 mb-10 font-raleway font-medium justify-center">
+        <div className="flex flex-wrap gap-5 md:gap-10 border-b border-white/30 pb-6 mb-10 font-raleway font-medium justify-center" data-aos="fade-up" data-aos-delay="100">
           {filterItems.map((cat) => (
             <div
               key={cat}
@@ -136,7 +136,7 @@ const ProductSection: React.FC = () => {
             </div>
           )}
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4" data-aos="fade-up" data-aos-delay="200">
             {displayProducts.length > 0 ? (
               displayProducts.map((product) => (
                 <div

@@ -46,6 +46,7 @@ const Kitchen = () => {
       <div className="relative w-full h-full">
         {products.map((item) => (
           <div
+            data-aos="fade-down"
             key={item.id}
             className={`absolute  ${item.className} drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)]`}
           >

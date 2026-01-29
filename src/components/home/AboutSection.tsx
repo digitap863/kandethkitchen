@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 type Feature = {
   id: number;
@@ -40,9 +41,9 @@ const AboutSection = () => {
       <div className="absolute h-25 w-full bg-[#0D0D0D] blur-[10px] -top-10 left-0 z-10"></div>
       <div className="relative z-20 max-w-7xl mx-auto pt-10  md:py-40 px-6 flex flex-col md:flex-row gap-12 items-center justify-between">
         {/* Left Content */}
-        <div className="flex-1 max-w-158">
+        <div className="flex-1 max-w-158" data-aos="fade-up">
           <h1 className="text-[24px] md:text-[49px] diamond-text leading-none font-semibold font-raleway text-center max-w-158">
-            About KANDETH<br className="block md:hidden"/> Kitchen Accessories &<br /> Appliances
+            About KANDETH<br className="block md:hidden" /> Kitchen Accessories &<br /> Appliances
           </h1>
 
           <p className="mt-6 text-white font-light text-[16px] md:text-[20px] text-center md:px-0 px-30">
@@ -61,22 +62,23 @@ const AboutSection = () => {
               where culinary dreams come to life with precision and style.
             </span>
           </p>
-
-          <div className="mt-10 flex justify-center">
-            <div className="relative">
-              <div className="text-base uppercase flex items-center gap-4 relative z-10 bg-black border border-white py-2 px-4">
-                View Products
-                <span>
-                  <ArrowRight size={16} />
-                </span>
+          <Link href={"/products"}>
+            <div className="mt-10 flex justify-center">
+              <div className="relative">
+                <div className="text-base uppercase flex items-center gap-4 relative z-10 bg-black border border-white py-2 px-4">
+                  View Products
+                  <span>
+                    <ArrowRight size={16} />
+                  </span>
+                </div>
+                <div className="h-full w-full absolute border border-white top-1 left-1 bg-black z-0"></div>
               </div>
-              <div className="h-full w-full absolute border border-white top-1 left-1 bg-black z-0"></div>
             </div>
-          </div>
+          </Link>
         </div>
 
         {/* Right Cards */}
-        <div className="flex flex-col gap-4 px-30">
+        <div className="flex flex-col gap-4 px-30" data-aos="fade-left" data-aos-delay="200">
           {features.map((item) => (
             <div
               key={item.id}

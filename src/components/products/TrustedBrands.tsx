@@ -60,14 +60,14 @@ const TrustedBrands: React.FC = () => {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
         {/* Heading */}
-        <h1 className="text-[24px] md:text-[52px] text-center diamond-text leading-none font-semibold font-raleway">
+        <h1 className="text-[24px] md:text-[52px] text-center diamond-text leading-none font-semibold font-raleway" data-aos="fade-down">
           Our Trusted Brands
         </h1>
         <p className="text-[16px] md:text-[28px] mt-5 font-light font-roboto text-center">
           We partner with world-renowned brands to bring you the best
         </p>
         {/* Logos */}
-        <div className="mt-12 max-w-4xl mx-auto flex flex-wrap justify-center md:gap-y-20 gap-5 md:gap-x-30 place-items-center">
+        <div className="mt-12 max-w-4xl mx-auto flex flex-wrap justify-center md:gap-y-20 gap-5 md:gap-x-30 place-items-center" data-aos="fade-up" data-aos-delay="200">
           {brands.map((brand) => (
             <div
               key={brand.id}

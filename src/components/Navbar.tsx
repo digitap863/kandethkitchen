@@ -3,10 +3,25 @@ import Image from "next/image";
 import Link from "next/link";
 import NavLink from "./nav/NavLink";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -15,7 +30,7 @@ const Navbar = () => {
     { name: "Services", path: "/services" },
   ];
   return (
-    <div className="w-full z-150 fixed px-4 md:px-10">
+    <div className={`w-full z-150 fixed px-4 md:px-10 ${scrolled ? "bg-[#0d0d0d]" : ""}`}>
       {/* Mobile Navbar */}
       <div className="flex w-full md:hidden px-2 py-6">
         <div className="bg-white/4 rounded-lg flex w-full px-2 py-4 justify-between items-center">

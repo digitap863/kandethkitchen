@@ -64,7 +64,7 @@ const products: KitchenProduct[] = [
     id: 6,
     title: "sinks",
     image: "/home/de6.jpg",
-    tags: [{ name: "FRANKE" },{ name: "SYLUX" }],
+    tags: [{ name: "FRANKE" }, { name: "SYLUX" }],
   },
   {
     id: 7,
@@ -76,13 +76,13 @@ const products: KitchenProduct[] = [
     id: 8,
     title: "wall cladding",
     image: "/home/de8.jpg",
-    tags: [{ name: "E3" },{ name: "AVITUS" },{ name: "POLUWOOD" }],
+    tags: [{ name: "E3" }, { name: "AVITUS" }, { name: "POLUWOOD" }],
   },
   {
     id: 9,
     title: "profiles",
     image: "/home/de9.jpg",
-    tags: [{ name: "EBCO" },{ name: "SLEEK" },{ name: "METTA" }],
+    tags: [{ name: "EBCO" }, { name: "SLEEK" }, { name: "METTA" }],
   },
   {
     id: 10,
@@ -94,7 +94,7 @@ const products: KitchenProduct[] = [
     id: 11,
     title: "door locks",
     image: "/home/de11.jpg",
-    tags: [{ name: "DOOR SET" },{ name: "JOLLY" },{ name: "DEKLER" }],
+    tags: [{ name: "DOOR SET" }, { name: "JOLLY" }, { name: "DEKLER" }],
   },
   {
     id: 12,
@@ -106,7 +106,7 @@ const products: KitchenProduct[] = [
     id: 13,
     title: "architectural hardware",
     image: "/home/de13.jpg",
-    tags: [{ name: "EBCO" },{ name: "METTA" }],
+    tags: [{ name: "EBCO" }, { name: "METTA" }],
   },
 ];
 
@@ -126,14 +126,14 @@ export default function KitchenDesign() {
     <section className="relative z-30 overflow-hidden bg-[#0D0D0D] pt-10 md:pt-20 lg:pt-32">
       <div className="w-full px-5 lg:px-8">
         {/* Header */}
-        <div className="mb-12 max-w-7xl mx-auto flex flex-col md:items-end md:mb-16 md:flex-row">
+        <div className="mb-12 max-w-7xl mx-auto flex flex-col md:items-end md:mb-16 md:flex-row" data-aos="fade-down">
           <div className="flex-1 md:flex md:gap-30 items-end">
             <div className="flex justify-start md:mb-25">
               <h1 className="text-[24px] md:text-[52px] diamond-text leading-none font-semibold font-raleway text-center">
                 Explore the art of
                 <br />
                 Kitchen
-                <br className="hidden md:block"/> design
+                <br className="hidden md:block" /> design
               </h1>
             </div>
             <p className="text-[16px] float-end md:float-none md:text-[28px]  font-light leading-snug text-white mt-5">
@@ -186,7 +186,7 @@ export default function KitchenDesign() {
         </div>
 
         {/* Carousel */}
-        <div className="relative">
+        <div className="relative" data-aos="fade-up">
           <Swiper
             modules={[Navigation]}
             spaceBetween={15}

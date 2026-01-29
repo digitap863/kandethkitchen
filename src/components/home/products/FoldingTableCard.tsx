@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const FoldingTableCard = () => {
   return (
-    <div className="rounded-[15px] md:rounded-4xl bg-white/2 backdrop-blur-md border border-white/5 shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.1)] font-roboto overflow-hidden px-3 py-7 md:p-16 col-span-2 flex gap-5">
+    <div className="rounded-[15px] md:rounded-4xl bg-white/2 backdrop-blur-md border border-white/5 shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.1)] font-roboto overflow-hidden px-3 py-7 md:p-16 col-span-2 flex gap-5" data-aos="fade-up" data-aos-delay="100">
       <div className="absolute h-100 w-100 bg-[#ACACAC]/90 blur-[600px] -bottom-[50%] -left-[60%]"></div>
       <div>
         <h3 className="text-white text-base md:text-[28px] font-semibold">Folding Table</h3>
@@ -16,7 +16,7 @@ const FoldingTableCard = () => {
 
         <div className="mt-4 flex items-center justify-between">
           <span className="text-white/70 text-xs md:text-[20px] font-medium">FRANKE</span>
-          
+
         </div>
       </div>
 

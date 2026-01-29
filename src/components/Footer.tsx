@@ -1,3 +1,5 @@
+"use client"
+import api from "@/lib/api";
 import {
   ArrowRight,
   Facebook,
@@ -9,8 +11,38 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { FormEvent, useState } from "react";
 
 const Footer = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    message: ''
+  });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+
+    try {
+      const res = await api.post('/user/contact', formData);
+
+      if (res.status === 200) {
+        setStatus('success');
+        setFormData({ name: '', phone: '', email: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
+  };
   return (
     <footer className="relative w-full  bg-white/5 rounded-t-[20px] border border-white/4 mx-1 text-white overflow-hidden font-sans mt-20">
       {/* Glow background */}
@@ -35,39 +67,63 @@ const Footer = () => {
             kitchen transformation.
           </p>
 
-          <div className="mt-8 space-y-5 max-w-lg">
+          <form className="mt-8 space-y-5 max-w-lg" onSubmit={handleSubmit}>
             <input
+              required
               type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
               placeholder="Name"
               className="w-full placeholder:uppercase bg-transparent border-b border-white/20 py-2 outline-none placeholder:text-white/40"
             />
             <input
-              type="text"
-              placeholder="Location"
+              required
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              inputMode="numeric"
+              pattern="[0-9+]*"
               className="w-full placeholder:uppercase bg-transparent border-b border-white/20 py-2 outline-none placeholder:text-white/40"
+              placeholder="Phone"
             />
             <input
+              required
               type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               placeholder="Email"
               className="w-full placeholder:uppercase bg-transparent border-b border-white/20 py-2 outline-none placeholder:text-white/40"
             />
             <textarea
+              required
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
               placeholder="Message"
               className="w-full placeholder:uppercase bg-transparent border-b border-white/20 py-2 outline-none placeholder:text-white/40 resize-none"
             />
+            {status === 'success' && (
+              <p className="text-green-600 text-sm">Message sent successfully!</p>
+            )}
+            {status === 'error' && (
+              <p className="text-red-600 text-sm">Failed to send. Please try again.</p>
+            )}
 
-            <div className="mt-2 flex">
+            <button className="mt-2 flex cursor-pointer" type="submit">
               <div className="relative">
                 <div className="text-base text-[#CE1919] uppercase flex items-center gap-4 relative z-10 bg-black border border-[#CE1919] py-2 px-4">
-                  Send Message
+                  {status === 'loading' ? 'Sending...' : 'Send a Message'}
                   <span>
                     <ArrowRight size={16} />
                   </span>
                 </div>
                 <div className="h-full w-full absolute border border-[#CE1919] top-1 left-1 bg-black z-0"></div>
               </div>
-            </div>
-          </div>
+            </button>
+          </form>
 
           {/* Socials */}
           <div className="mt-10 flex items-center gap-10">

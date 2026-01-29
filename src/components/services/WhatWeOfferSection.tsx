@@ -89,7 +89,7 @@ const WhatWeOfferSection = () => {
   return (
     <div className=" w-full min-h-screen relative">
       <div className=" w-full flex flex-col justify-center items-center relative z-30">
-        <h1 className="md:text-[52px] text-[24px] text-center diamond-text leading-none font-semibold font-raleway">
+        <h1 className="md:text-[52px] text-[24px] text-center diamond-text leading-none font-semibold font-raleway" data-aos="fade-down">
           Why Choose Kandeth?
         </h1>
         <p className="text-[16px] md:text-[28px] mt-5 font-light font-roboto text-center">
@@ -99,7 +99,7 @@ const WhatWeOfferSection = () => {
         <section className="relative w-full py-24 overflow-hidden">
           {/* Background glow */}
 
-          <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-y-20 gap-x-8 font-raleway">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-y-20 gap-x-8 font-raleway" data-aos="fade-up" data-aos-delay="200">
             {services.map((service) => (
 
               <div

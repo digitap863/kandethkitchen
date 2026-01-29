@@ -91,7 +91,7 @@ const LatestProductsSection = () => {
 
   return (
     <div className="min-h-screen w-full relative py-20 px-4 md:px-0 overflow-hidden">
-      <div className="w-full md:flex justify-center mb-20 px-4">
+      <div className="w-full md:flex justify-center mb-20 px-4" data-aos="fade-down">
         <div className="md:flex gap-30 items-end ">
           <div className="flex justify-start mb-5 md:mb-25">
             <h1 className="text-[24px] md:text-[52px] diamond-text leading-none font-semibold font-raleway text-center">
@@ -107,7 +107,7 @@ const LatestProductsSection = () => {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-3">
+      <div className="relative z-10 max-w-5xl mx-auto px-3" data-aos="fade-up">
         {loading && latestProducts.length === 0 ? (
           <div className="flex justify-center items-center py-40">
             <Loader2 className="w-12 h-12 text-red-600 animate-spin" />

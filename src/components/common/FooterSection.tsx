@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const FooterSection = () => {
   return (
@@ -22,6 +23,7 @@ const FooterSection = () => {
 
         <div className="mt-14 flex justify-center gap-6 flex-wrap">
           <div className=" flex justify-center">
+            <Link href={"/contactus"}>
             <div className="relative">
               <div className="text-base font-sans uppercase flex items-center gap-4 relative z-10 bg-black border border-white py-2 px-4">
                Contact us
@@ -31,6 +33,7 @@ const FooterSection = () => {
               </div>
               <div className="h-full w-full absolute border border-white top-1 left-1 z-0"></div>
             </div>
+            </Link>
           </div>
         </div>
       </div>

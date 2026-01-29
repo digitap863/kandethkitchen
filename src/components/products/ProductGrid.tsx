@@ -59,7 +59,7 @@ const ProductGrid: React.FC = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex justify-between items-center mb-8" data-aos="fade-down">
           <h2 className="text-white text-xl font-semibold">HOBS</h2>
           <button className="text-white/60 text-sm hover:text-white">
             View All →
@@ -67,7 +67,7 @@ const ProductGrid: React.FC = () => {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8" data-aos="fade-up" data-aos-delay="200">
           {products.map((product) => (
             <div
               key={product.id}

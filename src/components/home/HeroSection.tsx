@@ -14,7 +14,7 @@ const HeroSection = () => {
             <div className="h-full max-w-6xl mx-auto flex flex-col items-center md:items-start justify-center">
 
               {/* Shrink-wrap wrapper */}
-              <div className="inline-block text-center">
+              <div className="inline-block text-center" data-aos="fade-up">
                 <h1 className="text-[36px] md:text-[68px] diamond-text leading-none font-semibold font-raleway">
                   Premium Kitchen
                   <br /> Accessories &<br /> Appliances

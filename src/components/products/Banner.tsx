@@ -1,7 +1,7 @@
 const Banner = () => {
   return (
     <div className=" w-full min-h-[60vh] md:min-h-[80vh]">
-      <div className="h-[60vh] md:h-[80vh] w-full flex flex-col justify-center items-center px-4 md:px-0">
+      <div className="h-[60vh] md:h-[80vh] w-full flex flex-col justify-center items-center px-4 md:px-0" data-aos="zoom-in">
         <h3 className="uppercase text-[18px] md:text-[24px] font-sans text-[#CE1919] mb-5">
           Our Products
         </h3>

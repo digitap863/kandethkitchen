@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const HingesCard = () => {
   return (
-    <div className="rounded-[15px] md:rounded-4xl bg-white/2 backdrop-blur-md border border-white/5 p-2 md:p-6 shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.1)] font-roboto overflow-hidden pt-5 md:pt-16">
+    <div className="rounded-[15px] md:rounded-4xl bg-white/2 backdrop-blur-md border border-white/5 p-2 md:p-6 shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.1)] font-roboto overflow-hidden pt-5 md:pt-16" data-aos="fade-up" data-aos-delay="200">
       <div className="absolute h-80 w-80 bg-[#ACACAC]/90 blur-[600px] -bottom-[60%] -left-[60%]"></div>
       <h3 className="text-white text-[16px] md:text-[28px]  font-semibold">Hinges</h3>
 
@@ -14,7 +14,7 @@ const HingesCard = () => {
 
       <div className="mt-4 flex items-center justify-between">
         <span className="text-white/70 text-[14px] md:text-[20px] font-medium">EBCO</span>
-        
+
       </div>
 
       {/* Multiple Images */}
@@ -28,7 +28,7 @@ const HingesCard = () => {
           "/home/pr16.svg",
           "/home/pr17.svg",
 
-        ].map((i,index) => (
+        ].map((i, index) => (
           <div key={index} className="relative md:w-17.5 h-8 w-8  md:h-17.5">
             <Image
               src={i}

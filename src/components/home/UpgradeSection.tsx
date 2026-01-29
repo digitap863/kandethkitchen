@@ -15,7 +15,7 @@ const UpgradeSection = () => {
       <div className="md:h-58 h-24.5 w-27.25 md:w-65 absolute top-20 md:top-60 right-10 z-10">
         <Image src={"/home/up3.svg"} fill alt="upgrade3" />
       </div>
-      <div className="flex-1 max-w-211.5 mx-auto relative z-20">
+      <div className="flex-1 max-w-211.5 mx-auto relative z-20" data-aos="zoom-in">
         <h1 className="text-[24px] md:text-[52px] diamond-text leading-none font-semibold font-raleway text-center">
           Upgrade your kitchen
           <br />

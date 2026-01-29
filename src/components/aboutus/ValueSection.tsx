@@ -11,7 +11,7 @@ const ValueSection = () => {
         <div className="absolute h-full w-full bg-[linear-gradient(90deg,rgba(13,13,13,1)_0%,rgba(13,13,13,0.2)_20%,rgba(13,13,13,0)_50%,rgba(13,13,13,0.2)_80%,rgba(13,13,13,1)_100%)]"></div>
         <div className="absolute h-full w-full bg-[linear-gradient(180deg,rgba(13,13,13,1)_0%,rgba(13,13,13,0.2)_20%,rgba(13,13,13,0)_50%,rgba(13,13,13,0.2)_80%,rgba(13,13,13,1)_100%)]"></div>
         <div className="relative z-30 w-full px-4">
-          <h1 className="text-[24px] md:text-[52px] text-center diamond-text leading-none font-semibold font-raleway">
+          <h1 className="text-[24px] md:text-[52px] text-center diamond-text leading-none font-semibold font-raleway" data-aos="fade-down">
             Our Values
           </h1>
           <p className="text-[16px] md:text-[28px] mt-5 font-light font-roboto text-center">
@@ -20,7 +20,7 @@ const ValueSection = () => {
           <section className="relative w-full  py-24 overflow-hidden font-roboto">
             <div className="relative z-10 max-w-7xl mx-auto">
               {/* Top values */}
-              <div className="flex md:gap-20 text-center">
+              <div className="flex md:gap-20 text-center" data-aos="fade-up" data-aos-delay="100">
                 <div className="flex flex-col md:flex-row md:w-1/2 justify-between gap-10 md:gap-0">
                   <div className="flex flex-col justify-between">
                     <div className="mx-auto md:w-12 h-9 w-9 md:h-12 rounded-full bg-linear-to-b from-[#CE1919]/50 to-[#680C0C]/50 flex items-center justify-center text-white">
@@ -78,7 +78,7 @@ const ValueSection = () => {
           </section>
         </div>
       </div>
-      <div className="w-full bg-white/4 py-5 font-sans">
+      <div className="w-full bg-white/4 py-5 font-sans" data-aos="fade-up" data-aos-delay="300">
         <div className="max-w-6xl mx-auto flex justify-between md:gap-44 text-center px-10 md:px-0">
           <div className="flex flex-col gap-5 md:gap-0 md:flex-row md:w-1/2 justify-between">
             <div>

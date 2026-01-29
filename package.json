@@ -9,12 +9,14 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "aos": "^2.3.4",
     "axios": "^1.13.2",
     "cloudinary": "^2.9.0",
     "jsonwebtoken": "^9.0.3",
     "lucide-react": "^0.562.0",
     "mongoose": "^9.1.5",
     "next": "16.1.1",
+    "nodemailer": "^7.0.13",
     "qrcode.react": "^4.2.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
@@ -23,8 +25,10 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/aos": "^3.0.7",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20",
+    "@types/nodemailer": "^7.0.9",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

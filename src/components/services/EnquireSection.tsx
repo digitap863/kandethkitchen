@@ -10,7 +10,7 @@ const EnquireSection = () => {
         <Image src={"/aboutus/b3.png"} alt="bg" fill />
       </div>
       {/* Content */}
-      <div className="relative z-30 max-w-6xl mx-auto px-6 text-center">
+      <div className="relative z-30 max-w-6xl mx-auto px-6 text-center" data-aos="fade-up">
         <h2 className="text-white text-[24px] md:text-[36px] font-semibold font-raleway">
           Ready to Upgrade Your Kitchen or Wardrobe?
         </h2>

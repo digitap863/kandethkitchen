@@ -1,4 +1,4 @@
-interface Feature  {
+interface Feature {
   id: number;
   title: string;
   description: string;
@@ -48,7 +48,7 @@ const WhySection = () => {
   return (
     <div className=" w-full min-h-screen relative pt-20">
       <div className=" w-full flex flex-col justify-center items-center relative z-30 ">
-        <h1 className="text-[24px] md:text-[52px] text-center diamond-text leading-none font-semibold font-raleway">
+        <h1 className="text-[24px] md:text-[52px] text-center diamond-text leading-none font-semibold font-raleway" data-aos="fade-down">
           Why Choose Kandeth?
         </h1>
         <p className="text-[14px] md:text-[28px] mt-5 font-light font-roboto text-center">
@@ -58,7 +58,7 @@ const WhySection = () => {
         <section className="relative w-full pt-24 overflow-hidden font-roboto">
           {/* Background glow */}
 
-          <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="200">
             {features.map((feature) => (
               <div
                 key={feature.id}
