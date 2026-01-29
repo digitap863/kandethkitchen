@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useProductStore } from "@/stores/user/productStore";
+import Link from "next/link";
 
 
 const ProductDetails: React.FC = () => {
@@ -189,6 +190,7 @@ const ProductDetails: React.FC = () => {
           {/* CTAs */}
           <div className="mt-14 md:mt-30 md:pl-10 flex gap-10 md:gap-20 flex-wrap">
             <div className=" flex justify-center">
+              <Link href="/contactus">
               <div className="relative group">
                 <div className="text-base uppercase flex items-center gap-4 relative z-10 bg-black border border-white py-2 px-6 hover:bg-white hover:text-black transition-all cursor-pointer">
                   Enquire Now
@@ -198,6 +200,7 @@ const ProductDetails: React.FC = () => {
                 </div>
                 <div className="h-full w-full absolute border border-white top-1 left-1 bg-black z-0 group-hover:top-0 group-hover:left-0 transition-all"></div>
               </div>
+              </Link>
             </div>
 
             <button
